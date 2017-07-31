@@ -4,23 +4,26 @@
 <link rel="stylesheet" href="mainpage.css">
 
 <style>
-.mySlides {display:none;}
+.mySlides {
+  display:none;
+  height: 700px;
+  width: 500px;
+}
 
 #SearchSection {
   position: relative;
+  display: flex;
+  justify-content: center;
+
+
 }
 
 #SearchBox {
   position: absolute;
-  /*top: 10px;
-  left: 10px;
-  */
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
-
+  margin: auto;
+  align-items: center;
   padding: 5px;
-  background-color: white;
+  background-color: rgba(255,255,255,0.6);
   border: 2px solid grey;
 }
 
@@ -28,7 +31,6 @@
 
 <body>
 
-<h1 class="w3-center"></h1>
 <div id="SearchSection" class="w3-content w3-section" style="max-width:800px max-length:500px"
   <img class="mySlides w3-animate-fading" src="https://static.pexels.com/photos/196652/pexels-photo-196652.jpeg" style="width:100%">
   <img class="mySlides w3-animate-fading" src="http://2.bp.blogspot.com/-IUX8OrRCcoA/U_oEDWPIELI/AAAAAAAAH-M/J7z1RJN-zEQ/s1600/Sandbanks%2BKitefurf.jpg" style="width:100%">
