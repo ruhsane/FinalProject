@@ -40,6 +40,7 @@ class MainHandler(webapp2.RequestHandler):
         i = 0
         s = ""
         for event in thing:
+            p = str(thing[i]["title"])
             s = s + "title: " + str(thing[i]["title"]) + "<br>" + "description: " + str(thing[i]["description"]) + "<br>"
             i+=1
         self.logging.info(s)
