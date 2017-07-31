@@ -41,19 +41,27 @@ class MainHandler(webapp2.RequestHandler):
         i = 0
         s = ""
         for event in thing:
+
             s += "title: "
+
             if thing[i]["title"] is not None:
                 s+= thing[i]["title"]
+
             s += "<br>"
             s += "description: "
+
             if thing[i]["description"] is not None:
                 s += thing[i]["description"]
+
             s += "<br>"
             s += "venue name:"
+
             if thing[i]["venue_name"] is not None:
                 s += thing[i]["venue_name"]
+
             s += "<br><br>"
             i+=1
+
         self.response.write(s)
 
 app = webapp2.WSGIApplication([
