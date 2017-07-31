@@ -2,8 +2,15 @@
 <html>
 <link rel="stylesheet" href="mainpage.css">
 <body>
-
-<form action="/action_page.php">
+<form action="/action_page.php">Pick a place:
+  <select name="EventType">
+    <option value="newyork">New York</option>
+    <option value="losangeles">Los Angeles</option>
+    <option value="buffalo">Buffalo</option>
+    <option value="chicago">Chicago</option>
+  </select>
+  <br><br>
+<form action="/action_page.php">What type of event do you want?
   <select name="EventType">
     <option value="concerts">Concerts</option>
     <option value="museums">Museums</option>
