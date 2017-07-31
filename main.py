@@ -21,7 +21,7 @@ import os
 import json
 import urllib
 import urllib2
-import unicodedata
+
 jinja_environment = jinja2.Environment(loader= jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
 class MainHandler(webapp2.RequestHandler):
@@ -41,28 +41,19 @@ class MainHandler(webapp2.RequestHandler):
         i = 0
         s = ""
         for event in thing:
-            # print type(thing[i]["title"])
-            # print thing[i]["title"]
-            # p = unicode(thing[i]["title"], "utf-8")
-            # p2 = unicode(thing[i]["description"], "utf-8")
-            # print p
-            # print p2
-            s+= "title: "
+            s += "title: "
             if thing[i]["title"] is not None:
                 s+= thing[i]["title"]
-            s+= "<br>"
-            s+="description: "
+            s += "<br>"
+            s += "description: "
             if thing[i]["description"] is not None:
-                s+= thing[i]["description"]
-            s+= "<br>"
+                s += thing[i]["description"]
+            s += "<br>"
+            s += "venue name:"
+            if thing[i]["venue_name"] is not None:
+                s += thing[i]["venue_name"]
+            s += "<br><br>"
             i+=1
-
-
-
-        #parsed_event_dictionary
-        # my_dict = parsed_event_dictionary["events"]["event"]
-        # for i in range(len(my_dict)):
-        #     s = my_dict[i]['title'] + "<br>" + my_dict[i]['description'] + "<br>"
         self.response.write(s)
 
 app = webapp2.WSGIApplication([
