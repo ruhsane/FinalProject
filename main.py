@@ -38,15 +38,16 @@ class MainHandler(webapp2.RequestHandler):
         parsed_event_dictionary = json.loads(event_json_content)
         thing = parsed_event_dictionary["events"]["event"]
         i = 0
+        s = ""
         for event in thing:
-            print thing[i]["title"]
-            print thing[i]["description"]
-            i+= 1
+            s = s + "title: " + str(thing[i]["title"]) + "<br>" + "description: " + str(thing[i]["description"]) + "<br>"
+            i+=1
+        self.logging.info(s)
         #parsed_event_dictionary
         # my_dict = parsed_event_dictionary["events"]["event"]
         # for i in range(len(my_dict)):
         #     s = my_dict[i]['title'] + "<br>" + my_dict[i]['description'] + "<br>"
-        self.response.write(parsed_event_dictionary)
+        self.response.write(s)
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
