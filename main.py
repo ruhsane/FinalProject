@@ -26,11 +26,11 @@ jinja_environment = jinja2.Environment(loader= jinja2.FileSystemLoader(os.path.d
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        template = jinja_environment.get_template('index.html')
+        template = jinja_environment.get_template('templates/index.html')
         self.response.write(template.render())
 
     def post(self):
-        template = jinja_environment.get_template('index.html')
+        template = jinja_environment.get_template('templates/index.html')
         base_url = "http://api.eventful.com/json/events/search?app_key=dTJDKdL9vWFkMrwQ"
         url = base_url + "&location=" + str(self.request.get("Location"))
         print "url = " + url
