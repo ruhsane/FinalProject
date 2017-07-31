@@ -39,7 +39,7 @@ class MainHandler(webapp2.RequestHandler):
         event_data_source= urllib2.urlopen(url)
         event_json_content = event_data_source.read()
         parsed_event_dictionary = json.loads(event_json_content)
-        template = jinja_environment.get_template('templates/flag_output.html')
+        template = jinja_environment.get_template('results.html')
         flag_url = parsed_flag_dictionary[0]['flag']
         country= parsed_flag_dictionary[0]['name']
         vars_dict = {
