@@ -18,14 +18,27 @@ import jinja2
 import webapp2
 import logging
 import os
+import json
+import urllib
+import urllib2
+# If you need to log in:
+# api.login('username', 'password')
 
-jinja_environment = jinja2.Environment(loader=
-    jinja2.FileSystemLoader(os.path.dirname(__file__)))
+# events = api.call('/events/search', q='music', l='San Diego')
+# for event in events['events']['event']:
+#     print "%s at %s" % (event['title'], event['venue_name'])
+# ]
+
+jinja_environment = jinja2.Environment(loader= jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('index.html')
-        self.response.write(template.render())
+        url = "api.eventful.com/json/events/search?app_key=dTJDKdL9vWFkMrwQ"
+        end_url = url+"&location=buffalo"
+        event_data_source = urllib2.urlopen(end_url).read()
+        parsed_events = json.loads(event_data_source)
+        self.response.write(parsed_events)
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
