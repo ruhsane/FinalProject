@@ -43,6 +43,7 @@ class MainHandler(webapp2.RequestHandler):
             s = s + "title: " + str(thing[i]["title"]) + "<br>" + "description: " + str(thing[i]["description"]) + "<br>"
             i+=1
         self.logging.info(s)
+
         #parsed_event_dictionary
         # my_dict = parsed_event_dictionary["events"]["event"]
         # for i in range(len(my_dict)):
