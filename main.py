@@ -31,7 +31,7 @@ class MainHandler(webapp2.RequestHandler):
 
     def post(self):
         template = jinja_environment.get_template('templates/index.html')
-        base_url = "http://api.eventful.com/json/events/search?app_key=dTJDKdL9vWFkMrwQ"
+        base_url = "http://api.eventful.com/json/events/search?app_key=dTJDKdL9vWFkMrwQ&page_size=100"
         url = base_url + "&location=" + str(self.request.get("Location"))
         print "url = " + url
         event_data_source= urllib2.urlopen(url)
@@ -41,19 +41,27 @@ class MainHandler(webapp2.RequestHandler):
         i = 0
         s = ""
         for event in thing:
+
             s += "title: "
+
             if thing[i]["title"] is not None:
                 s+= thing[i]["title"]
+
             s += "<br>"
             s += "description: "
+
             if thing[i]["description"] is not None:
                 s += thing[i]["description"]
+
             s += "<br>"
             s += "venue name:"
+
             if thing[i]["venue_name"] is not None:
                 s += thing[i]["venue_name"]
+
             s += "<br><br>"
             i+=1
+
         self.response.write(s)
 
 app = webapp2.WSGIApplication([
