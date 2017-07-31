@@ -39,25 +39,27 @@
 
   <section id="SearchBox">
     <h1> Event Generator </h1>
-  <form action="/action_page.php">Pick a place:
+  <form method="post">Pick a place:
     <select name="Location">
-      <option value="newyork">New York</option>
-      <option value="losangeles">Los Angeles</option>
+      <option value="new+york">New York</option>
+      <option value="los+angeles">Los Angeles</option>
       <option value="buffalo">Buffalo</option>
       <option value="chicago">Chicago</option>
     </select>
     <br><br>
-  <form action="/action_page.php">What type of event do you want?
+    <input type="submit">
+  </form>
+  <!-- <form action="/action_page.php">What type of event do you want?
     <select name="EventType">
       <option value="concerts">Concerts</option>
       <option value="museums">Museums</option>
       <option value="sports">Sports</option>
       <option value="festivals">Festivals</option>
-      <option value="none" selected>Surprise me!</option>
+      <option value="none" selected>Everything</option>
     </select>
     <br><br>
     <input type="submit">
-  </form>
+  </form> -->
   </section>
 
 </div>
