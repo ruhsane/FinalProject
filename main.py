@@ -34,8 +34,20 @@ jinja_environment = jinja2.Environment(loader= jinja2.FileSystemLoader(os.path.d
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('index.html')
-        url = "api.eventful.com/json/events/search?app_key=dTJDKdL9vWFkMrwQ"
-        end_url = url+"&location=buffalo"
+        base_url = "api.eventful.com/json/events/search?app_key=dTJDKdL9vWFkMrwQ"
+        url = base_url + "&location=buffalo"
+        event_data_source= urllib2.urlopen(url)
+        event_json_content = event_data_source.read()
+        parsed_event_dictionary = json.loads(event_json_content)
+        template = jinja_environment.get_template('templates/flag_output.html')
+        flag_url = parsed_flag_dictionary[0]['flag']
+        country= parsed_flag_dictionary[0]['name']
+        vars_dict = {
+        'country': country,
+        'flag_url':flag_url
+        }
+            self.response.write(template.render(vars_dict))
+
         event_data_source = urllib2.urlopen(end_url).read()
         parsed_events = json.loads(event_data_source)
         self.response.write(parsed_events)
