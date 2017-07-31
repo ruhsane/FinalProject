@@ -21,36 +21,23 @@ import os
 import json
 import urllib
 import urllib2
-# If you need to log in:
-# api.login('username', 'password')
-
-# events = api.call('/events/search', q='music', l='San Diego')
-# for event in events['events']['event']:
-#     print "%s at %s" % (event['title'], event['venue_name'])
-# ]
-
 jinja_environment = jinja2.Environment(loader= jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('index.html')
-        base_url = "api.eventful.com/json/events/search?app_key=dTJDKdL9vWFkMrwQ"
-        url = base_url + "&location=buffalo"
+        self.response.write(template.render())
+
+    def post(self):
+        template = jinja_environment.get_template('index.html')
+        base_url = "http://api.eventful.com/json/events/search?app_key=dTJDKdL9vWFkMrwQ"
+        url = base_url + "&location=" + str(self.request.get("Location"))
+        print "url = " + url
         event_data_source= urllib2.urlopen(url)
         event_json_content = event_data_source.read()
         parsed_event_dictionary = json.loads(event_json_content)
-        template = jinja_environment.get_template('results.html')
-        flag_url = parsed_flag_dictionary[0]['flag']
-        country= parsed_flag_dictionary[0]['name']
-        vars_dict = {
-        'country': country,
-        'flag_url':flag_url
-        }
-            self.response.write(template.render(vars_dict))
 
-        event_data_source = urllib2.urlopen(end_url).read()
-        parsed_events = json.loads(event_data_source)
-        self.response.write(parsed_events)
+
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
