@@ -33,15 +33,13 @@ class MainHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template('templates/index.html')
         base_url = "http://api.eventful.com/json/events/search?app_key=dTJDKdL9vWFkMrwQ"
         #remember to add code to make more than 10 events &page_size=100
-        print "================"
-        print self.request.get('category')
-        print self.request.get('location')
-        url = base_url + "&location=" + str(self.request.get("location")) + "&category=" +str(self.request.get("category"))
+        url = base_url + "&location=" + str(self.request.get("Location")) + "&category=" +str(self.request.get("category"))
         print "url = " + url
         event_data_source= urllib2.urlopen(url)
         event_json_content = event_data_source.read()
         parsed_event_dictionary = json.loads(event_json_content)
         thing = parsed_event_dictionary["events"]["event"]
+        print thing
         i = 0
         s = ""
         for event in thing:
@@ -68,6 +66,14 @@ class MainHandler(webapp2.RequestHandler):
                 s += thing[i]["venue_name"]
             else:
                 s += "No venue given"
+
+            s += "<br>"
+            s += "image"
+
+            if thing[i]["image"] is not None:
+                s += "<img src = " + thing[i]["image"]["medium"]["url"] + ">"
+            else:
+                s += "<img src = /resources/No_image_available.png>"
 
             s += "<br><br>"
             i+=1
