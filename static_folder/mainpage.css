@@ -4,13 +4,58 @@
   width: 500px;
 }
 
+a:-webkit-any-link {
+    color: black;
+    font-family: Comic Sans MS, Comic Sans, cursive;
+    font-size: 20px;
+    /*cursor: auto;*/
+    text-decoration: none;
+    padding-top: 8px;
+}
+
+body {
+  margin: 0px;
+}
+
+.top{
+  height: 40px;
+  width: 200px;
+  text-align: center;
+  align-items: center;
+  /*border: 1px solid grey;*/
+  padding-top: 8px;
+}
+
+#spacer {
+  flex-grow: 1;
+}
+
+#WholeTopPart {
+  /*border: 1px solid grey;*/
+  display: flex; /*Always need for flex positioning*/
+  justify-content: center;
+
+}
+
+#logo {
+  font-family: Chalkduster, fantasy;
+  color: #FD64FD;
+  font-size: 20px;
+}
+
+#SignIn {
+  /*font-family: Comic Sans MS, Comic Sans, cursive;*/
+  font-family: Chalkduster, fantasy;
+  font-size: 20px;
+}
+
+
 #SearchSection {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-
 }
 
 #SearchBox {
@@ -35,35 +80,4 @@ button {
   background-color: #FD64FD;
   font-family: Comic Sans MS, Comic Sans, cursive;
 
-}
-
-.top{
-  height: 40px;
-  width: 200px;
-  text-align: center;
-  align-items: center;
-  border: 1px solid grey;
-  padding: 8px 0;
-
-}
-
-#spacer {
-  flex-grow: 1;
-}
-
-#TopPart {
-  /*border: 1px solid grey;*/
-  display: flex; /*Always need for flex positioning*/
-  justify-content: center;
-}
-
-#logo {
-  font-family: Chalkduster, fantasy;
-  color: #FD64FD;
-  font-size: 18px;
-}
-
-#SignIn {
-  font-family: Comic Sans MS, Comic Sans, cursive;
-  font-size: 18px;
 }
