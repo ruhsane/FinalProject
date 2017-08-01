@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="mainpage.css">
+
+<style>
+.mySlides {
+  display:none;
+  height: 700px;
+  width: 500px;
+}
+
+#SearchSection {
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+
+}
+
+#SearchBox {
+  position: absolute;
+  margin: auto;
+  align-items: center;
+  padding: 5px;
+  background-color: rgba(255,255,255,0.6);
+  border: 2px solid grey;
+}
+
+</style>
+
+<body>
+
+<div id="SearchSection" class="w3-content w3-section" style="max-width:800px max-length:500px"
+  <img class="mySlides w3-animate-fading" src="https://static.pexels.com/photos/196652/pexels-photo-196652.jpeg" style="width:100%">
+  <img class="mySlides w3-animate-fading" src="http://2.bp.blogspot.com/-IUX8OrRCcoA/U_oEDWPIELI/AAAAAAAAH-M/J7z1RJN-zEQ/s1600/Sandbanks%2BKitefurf.jpg" style="width:100%">
+  <img class="mySlides w3-animate-fading" src="http://www.projectaccessforall.org/sites/default/files/styles/article_full/public/NY-American-Museum-of-Natural-History-001.jpg?itok=9KbUxCI5" style="width:100%">
+  <img class="mySlides w3-animate-fading" src="http://www.thecolorvibe.com/images/color_run_1.jpg" style="width:100%">
+  <img class="mySlides w3-animate-fading" src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F31641848%2F205756103761%2F1%2Foriginal.jpg?w=1000&rect=0%2C80%2C960%2C480&s=9e50ed39e8d4c240ce4eabe77b7d8cec" style="width:100%">
+  <img class="mySlides w3-animate-fading" src="https://images4.alphacoders.com/286/286698.jpg" style="width:100%">
+
+  <section id="SearchBox">
+    <h1> Event Generator </h1>
+  <form method="post">Pick a place:
+    <select name="Location">
+      <option value="new+york">New York</option>
+      <option value="los+angeles">Los Angeles</option>
+      <option value="buffalo">Buffalo</option>
+      <option value="chicago">Chicago</option>
+    </select>
+    <br><br>
+    <input type="submit">
+  </form>
+  <!-- <form action="/action_page.php">What type of event do you want?
+    <select name="EventType">
+      <option value="concerts">Concerts</option>
+      <option value="museums">Museums</option>
+      <option value="sports">Sports</option>
+      <option value="festivals">Festivals</option>
+      <option value="none" selected>Everything</option>
+    </select>
+    <br><br>
+    <input type="submit">
+  </form> -->
+  </section>
+
+</div>
+
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}
+    x[myIndex-1].style.display = "block";
+    setTimeout(carousel, 2000); // Change image every 2 seconds
+}
+</script>
+
+
+
+<script src="mainpage.js"></script>
+</body>
+</html>

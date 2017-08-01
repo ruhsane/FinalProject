@@ -31,7 +31,7 @@ class MainHandler(webapp2.RequestHandler):
 
     def post(self):
         template = jinja_environment.get_template('templates/index.html')
-        base_url = "http://api.eventful.com/json/events/search?app_key=dTJDKdL9vWFkMrwQ&page_size=100"
+        base_url = "http://api.eventful.com/json/events/search?app_key=dTJDKdL9vWFkMrwQ"
         url = base_url + "&location=" + str(self.request.get("Location"))
         print "url = " + url
         event_data_source= urllib2.urlopen(url)
