@@ -58,13 +58,29 @@ class EventInfo(webapp2.RequestHandler):
         specific_event_data_source= urllib2.urlopen(url)
         specific_event_json_content = specific_event_data_source.read()
         parsed_specific_event_dictionary = json.loads(specific_event_json_content)
+
         event_title = parsed_specific_event_dictionary["title"]
+
+        event_venue_name = parsed_specific_event_dictionary["venue_name"]
+
+        if "venue_address" in parsed_specific_event_dictionary:
+            event_venue_address = parsed_specific_event_dictionary["venue_address"]
+        else: event_venue_address = "location not found"
+
         event_description = parsed_specific_event_dictionary["description"]
         if event_description is None:
             event_description = "No description found"
+
+        if parsed_specific_event_dictionary["images"] is None:
+            event_image_url_medium = "/static_folder/No_image_available.png"
+        else:
+            event_image_url_medium = parsed_specific_event_dictionary["images"]["image"]["medium"]["url"]
         event_dict = {
             "title" : event_title,
-            "description" : event_description
+            "venueName" : event_venue_name,
+            "description" : event_description,
+            "venueAddress" : event_venue_address,
+            "mediumPicURL" : event_image_url_medium
         }
         self.response.write(template.render(event_dict))
 
