@@ -3,8 +3,8 @@
 	</head>
 	<body>
 		<ul>
-			{% for title in event %}
-				<li><a href = "/event_specifics.html?title={{title}}&global={{global}}">{{title}}</a></li>
+			{% for title in eventTitles %}
+				<li><a href = "/event_specifics?title={{title}}&global={{global}}">{{title}}</a></li>
 			{% endfor %}
 		</ul>
 	</body>
