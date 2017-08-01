@@ -21,13 +21,26 @@ import os
 import json
 import urllib
 import urllib2
+from google.appengine.api import users
 
 jinja_environment = jinja2.Environment(loader= jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
+
+        user = users.get_current_user()
+        if user:
+            greeting = ('(<a href="%s">Sign Out</a>)' % (users.create_logout_url('/signin')))
+        else:
+            greeting = ('<a href="%s">Sign In</a>' % users.create_login_url('/signin'))
+
+        signin = ('<html><body><section id="WholeTopPart"><div class="top" id="SignIn2">%s</div></section></body></html>' % greeting)
+
+        login = {"Signin" : signin}
+
+
         template = jinja_environment.get_template('templates/index.html')
-        self.response.write(template.render())
+        self.response.write(template.render(login))
 
     def post(self):
         template = jinja_environment.get_template('templates/results.html')
@@ -86,6 +99,7 @@ class MainHandler(webapp2.RequestHandler):
         #     s += "<br><br>"
         #     i+=1
         self.response.write(template.render(event_dictionary))
+
 
 class EventInfo(webapp2.RequestHandler):
     def get(self):
