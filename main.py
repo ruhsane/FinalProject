@@ -34,7 +34,7 @@ class MainHandler(webapp2.RequestHandler):
         else:
             greeting = ('<a href="%s">Sign In</a>' % users.create_login_url('/signin'))
 
-        signin = ('<html><body><section id="WholeTopPart"><div class="top" id="SignIn2">%s</div></section></body></html>' % greeting)
+        signin = ('<html><body><section id="WholeTopPart"><div class="top" id="SignIn">%s</div></section></body></html>' % greeting)
 
         login = {"Signin" : signin}
 

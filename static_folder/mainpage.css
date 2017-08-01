@@ -10,7 +10,7 @@ a:-webkit-any-link {
     font-size: 20px;
     /*cursor: auto;*/
     text-decoration: none;
-    padding-top: 8px;
+    padding-top: 0px;
 }
 
 body {
@@ -23,7 +23,6 @@ body {
   text-align: center;
   align-items: center;
   /*border: 1px solid grey;*/
-  padding-top: 8px;
 }
 
 #spacer {
@@ -34,7 +33,7 @@ body {
   /*border: 1px solid grey;*/
   display: flex; /*Always need for flex positioning*/
   justify-content: center;
-
+  /*margin-top: 3px;*/
 }
 
 #logo {
@@ -61,7 +60,7 @@ body {
 #SearchBox {
   position: absolute;
   /*margin: auto;*/
-  padding: 5px;
+  padding: 15px;
   background-color: rgba(255,255,255,0.6);
 }
 
@@ -79,5 +78,5 @@ button {
   font-size: 20px;
   background-color: #FD64FD;
   font-family: Comic Sans MS, Comic Sans, cursive;
-
+  cursor: pointer;
 }
