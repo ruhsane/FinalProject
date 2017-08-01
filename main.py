@@ -35,77 +35,38 @@ class MainHandler(webapp2.RequestHandler):
         #remember to add code to make more than 10 events &page_size=100
         url = base_url + "&location=" + str(self.request.get("location")) + "&category=" +str(self.request.get("category"))
         event_data_source= urllib2.urlopen(url)
-        print "-===-=-=-=-=--==--="
-        print event_data_source
-        print "-=-=-===--==-=-=-=-"
         event_json_content = event_data_source.read()
         parsed_event_dictionary = json.loads(event_json_content)
         listOfEvents = parsed_event_dictionary["events"]["event"]
         i = 0
-        s = ""
         event_title_list = []
-        global_event_dictionary = {}
-        # event_info = {}
+        event_id_list = []
+        event_title_id = {}
         for event in listOfEvents:
             event_title_list.append(listOfEvents[i]["title"])
-            # # event_info("url") = urllib.quote(listOfEvents[i]["url"].encode("utf-8"))
-            # # event_info("venue_url") = urllib.quote(listOfEvents[i]["venue_url"].encode("utf-8"))
-            # if listOfEvents[i]["image"] is not None:
-            #     event_info("url") = urllib.quote(listOfEvents[i]["image"]["small"]["url"].encode("utf-8"))
-            #     event_info("url") = urllib.quote(listOfEvents[i]["image"]["medium"]["url"].encode("utf-8"))
-            #     event_info("url") = urllib.quote(listOfEvents[i]["image"]["thumb"]["url"].encode("utf-8"))
-            # if listOfEvents[i]["performers"] is not None:
-            #     for perform in listOfEvents[i]["performers"]["performer"]:
-            #         event_info("url") = urllib.quote(perform["url"].encode("utf-8"))
-            # global_event_dictionary[listOfEvents[i]["title"]] = listOfEvents[i]
+            event_id_list.append(listOfEvents[i]["id"])
+            event_title_id[listOfEvents[i]["title"]] = listOfEvents[i]["id"]
             i += 1
-
-        event_dictionary = {"eventTitles": event_title_list, "global" : global_event_dictionary}
-        # i = 0
-        # s = ""
-        # for event in listOfEvents:
-        #
-        #     s += "Title: "
-        #
-        #     if listOfEvents[i]["title"] is not None:
-        #         s+= listOfEvents[i]["title"]
-        #     else:
-        #         s += "No title given"
-        #
-        #     s += "<br>"
-        #     s += "Description: "
-        #
-        #     if listOfEvents[i]["description"] is not None:
-        #         s += listOfEvents[i]["description"]
-        #     else:
-        #         s += "No description given"
-        #
-        #     s += "<br>"
-        #     s += "Venue name:"
-        #
-        #     if listOfEvents[i]["venue_name"] is not None:
-        #         s += listOfEvents[i]["venue_name"]
-        #     else:
-        #         s += "No venue given"
-        #
-        #     s += "<br>"
-        #     s += "image"
-        #
-        #     if listOfEvents[i]["image"] is not None:
-        #         s += "<img src = " + listOfEvents[i]["image"]["medium"]["url"] + ">"
-        #     else:
-        #         s += "<img src = /resources/No_image_available.png>"
-        #
-        #     s += "<br><br>"
-        #     i+=1
+        event_dictionary = {"eventTitles": event_title_list, "eventIds": event_id_list, "eventTitleId" : event_title_id}
         self.response.write(template.render(event_dictionary))
 
 class EventInfo(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('templates/event_specifics.html')
-        s = self.request.get('global')
-        print s
-        self.response.write(s)
+        base_url = "http://api.eventful.com/json/events/get?app_key=dTJDKdL9vWFkMrwQ&id="
+        url = base_url + self.request.get("id")
+        specific_event_data_source= urllib2.urlopen(url)
+        specific_event_json_content = specific_event_data_source.read()
+        parsed_specific_event_dictionary = json.loads(specific_event_json_content)
+        event_title = parsed_specific_event_dictionary["title"]
+        event_description = parsed_specific_event_dictionary["description"]
+        if event_description is None:
+            event_description = "No description found"
+        event_dict = {
+            "title" : event_title,
+            "description" : event_description
+        }
+        self.response.write(template.render(event_dict))
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
