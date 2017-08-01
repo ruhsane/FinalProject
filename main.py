@@ -34,7 +34,7 @@ class MainHandler(webapp2.RequestHandler):
         else:
             greeting = ('<a href="%s">Sign In</a>' % users.create_login_url('/signin'))
 
-        signin = ('<html><body><section id="WholeTopPart"><div class="top" id="SignIn2">%s</div></section></body></html>' % greeting)
+        signin = ('<html><body><section id="WholeTopPart"><div class="top" id="SignIn">%s</div></section></body></html>' % greeting)
 
         login = {"Signin" : signin}
 
@@ -59,11 +59,15 @@ class MainHandler(webapp2.RequestHandler):
         event_id_list = []
         event_title_id = {}
         for event in listOfEvents:
-            event_title_list.append(listOfEvents[i]["title"])
-            event_id_list.append(listOfEvents[i]["id"])
-            event_title_id[listOfEvents[i]["title"]] = listOfEvents[i]["id"]
+            event_title_list.append(listOfEvents[i]["title"])#puts all the titles in a list
+            event_id_list.append(listOfEvents[i]["id"])#puts all the ids in a list
+            event_title_id[listOfEvents[i]["title"]] = listOfEvents[i]["id"]#conencts the title with its id
             i += 1
-        event_dictionary = {"eventTitles": event_title_list, "eventIds": event_id_list, "eventTitleId" : event_title_id}
+        event_dictionary = {
+            "eventTitles": event_title_list,
+            "eventIds": event_id_list,
+            "eventTitleId" : event_title_id
+            }
         self.response.write(template.render(event_dictionary))
 
 
