@@ -35,7 +35,7 @@ class MainHandler(webapp2.RequestHandler):
         #remember to add code to make more than 10 events &page_size=100
         print "================"
         print self.request.get('category')
-        print self.request.get('Location')
+        print self.request.get('location')
         url = base_url + "&location=" + str(self.request.get("location")) + "&category=" +str(self.request.get("category"))
         print "url = " + url
         event_data_source= urllib2.urlopen(url)
