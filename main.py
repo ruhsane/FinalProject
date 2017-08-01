@@ -39,7 +39,6 @@ class MainHandler(webapp2.RequestHandler):
         event_json_content = event_data_source.read()
         parsed_event_dictionary = json.loads(event_json_content)
         thing = parsed_event_dictionary["events"]["event"]
-
         i = 0
         s = ""
         event_list = []
@@ -86,7 +85,6 @@ class MainHandler(webapp2.RequestHandler):
         #
         #     s += "<br><br>"
         #     i+=1
-
         self.response.write(template.render(event_dictionary))
 
 class EventInfo(webapp2.RequestHandler):
