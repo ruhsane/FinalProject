@@ -72,7 +72,7 @@ class EventInfo(webapp2.RequestHandler):
             event_description = "No description found"
 
         if parsed_specific_event_dictionary["images"] is None:
-            event_image_url_medium = "/static_folder/No_image_available.png"
+            event_image_url_medium = "/resources/No_image_available.png"
         else:
             event_image_url_medium = parsed_specific_event_dictionary["images"]["image"]["medium"]["url"]
         event_dict = {
