@@ -3,8 +3,17 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="resources/mainpage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
   </head>
   <body>
+    <section id="TopPart">
+        <div class="top" id="logo">We need a logo</div>
+        <div id="spacer"></div>
+        <div class="top" id="SignIn">Sign in</div>
+        <div class="top" id="SignIn">My Events</div>
+    </section>
+
     <div id="SearchSection" class="w3-content w3-section" style="max-width:800px max-length:500px">
       <img class="mySlides w3-animate-fading" src="https://static.pexels.com/photos/196652/pexels-photo-196652.jpeg" style="width:100%">
       <img class="mySlides w3-animate-fading" src="http://2.bp.blogspot.com/-IUX8OrRCcoA/U_oEDWPIELI/AAAAAAAAH-M/J7z1RJN-zEQ/s1600/Sandbanks%2BKitefurf.jpg" style="width:100%">
@@ -13,10 +22,13 @@
       <img class="mySlides w3-animate-fading" src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F31641848%2F205756103761%2F1%2Foriginal.jpg?w=1000&rect=0%2C80%2C960%2C480&s=9e50ed39e8d4c240ce4eabe77b7d8cec" style="width:100%">
       <img class="mySlides w3-animate-fading" src="https://images4.alphacoders.com/286/286698.jpg" style="width:100%">
 
+
+
       <section id="SearchBox">
-        <h1> Event Generator </h1>
-      <form method="post">Pick a place:
+        <h1> Explore Events! </h1>
+      <form method="post">
         <select name="location">
+          <option selected disabled>Pick a place</option>
           <option value="new+york">New York</option>
           <option value="los+angeles">Los Angeles</option>
           <option value="buffalo">Buffalo</option>
@@ -25,18 +37,22 @@
         <br><br>
       <!-- </form>
 
-      <form method="post">What type of event do you want? -->
-      What type of event do you want?
+      <form method="post">-->
+
         <select name="category">
+          <option selected disabled>What type of event do you want?</option>
           <option value="concerts">Concerts</option>
           <option value="pet">Pets</option>
           <option value="art">Art</option>
           <option value="sports">Sports</option>
           <option value="festivals">Festivals</option>
-          <option value="none" selected>Everything</option>
+          <option value="none">Everything</option>
         </select>
         <br><br>
-        <input type="submit"/>
+        <button type="submit">
+          <i class="fa fa-search"></i>
+          Search
+        </button>
       </form>
       </section>
     </div>
