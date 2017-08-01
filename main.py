@@ -33,7 +33,10 @@ class MainHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template('templates/index.html')
         base_url = "http://api.eventful.com/json/events/search?app_key=dTJDKdL9vWFkMrwQ"
         #remember to add code to make more than 10 events &page_size=100
-        url = base_url + "&location=" + str(self.request.get("Location")) + "&category=" +str(self.request.get("category"))
+        print "================"
+        print self.request.get('category')
+        print self.request.get('Location')
+        url = base_url + "&location=" + str(self.request.get("location")) + "&category=" +str(self.request.get("category"))
         print "url = " + url
         event_data_source= urllib2.urlopen(url)
         event_json_content = event_data_source.read()
