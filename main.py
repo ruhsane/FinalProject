@@ -39,6 +39,7 @@ class MainHandler(webapp2.RequestHandler):
         event_json_content = event_data_source.read()
         parsed_event_dictionary = json.loads(event_json_content)
         thing = parsed_event_dictionary["events"]["event"]
+        print thing
         i = 0
         s = ""
         for event in thing:
@@ -65,6 +66,12 @@ class MainHandler(webapp2.RequestHandler):
                 s += thing[i]["venue_name"]
             else:
                 s += "No venue given"
+
+            s += "<br>"
+            s += "image"
+
+            if thing[i]["image"] is not None:
+                s += "<img src = " + thing[i]["image"]["medium"]["url"] + ">""
 
             s += "<br><br>"
             i+=1
