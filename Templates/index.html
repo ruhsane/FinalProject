@@ -8,12 +8,12 @@
   </head>
   <body>
     <section id="TopPart">
-        <div class="box" id="logo">We need a logo</div>
+        <div class="top" id="logo">We need a logo</div>
         <div id="spacer"></div>
-        <div class="box" id="SignIn">Sign in</div>
-        <div class="box" id="SignIn">My Events</div>
+        <div class="top" id="SignIn">Sign in</div>
+        <div class="top" id="SignIn">My Events</div>
     </section>
-    
+
     <div id="SearchSection" class="w3-content w3-section" style="max-width:800px max-length:500px">
       <img class="mySlides w3-animate-fading" src="https://static.pexels.com/photos/196652/pexels-photo-196652.jpeg" style="width:100%">
       <img class="mySlides w3-animate-fading" src="http://2.bp.blogspot.com/-IUX8OrRCcoA/U_oEDWPIELI/AAAAAAAAH-M/J7z1RJN-zEQ/s1600/Sandbanks%2BKitefurf.jpg" style="width:100%">
@@ -25,9 +25,10 @@
 
 
       <section id="SearchBox">
-        <h1> Event Generator </h1>
-      <form method="post">Pick a place:
+        <h1> Explore Events! </h1>
+      <form method="post">
         <select name="location">
+          <option selected disabled>Pick a place</option>
           <option value="new+york">New York</option>
           <option value="los+angeles">Los Angeles</option>
           <option value="buffalo">Buffalo</option>
@@ -36,15 +37,16 @@
         <br><br>
       <!-- </form>
 
-      <form method="post">What type of event do you want? -->
-      What type of event do you want?
+      <form method="post">-->
+
         <select name="category">
+          <option selected disabled>What type of event do you want?</option>
           <option value="concerts">Concerts</option>
           <option value="pet">Pets</option>
           <option value="art">Art</option>
           <option value="sports">Sports</option>
           <option value="festivals">Festivals</option>
-          <option value="none" selected>Everything</option>
+          <option value="none">Everything</option>
         </select>
         <br><br>
         <button type="submit">
