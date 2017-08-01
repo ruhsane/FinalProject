@@ -33,7 +33,6 @@ class MainHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template('templates/results.html')
         base_url = "http://api.eventful.com/json/events/search?app_key=dTJDKdL9vWFkMrwQ"
         #remember to add code to make more than 10 events &page_size=100
-        print
         url = base_url + "&location=" + str(self.request.get("location")) + "&category=" +str(self.request.get("category"))
         print "url = " + url
         event_data_source= urllib2.urlopen(url)
@@ -44,11 +43,12 @@ class MainHandler(webapp2.RequestHandler):
         i = 0
         s = ""
         event_list = []
+        global_event_dictionary = {}
         for event in thing:
             event_list.append(thing[i]["title"])
+            global_event_dictionary[thing[i]["title"]] = thing[i]
             i += 1
-        event_dictionary = {"event": event_list}
-        print event_dictionary["event"]
+        event_dictionary = {"event": event_list, "global" : global_event_dictionary}
         # i = 0
         # s = ""
         # for event in thing:
@@ -88,6 +88,13 @@ class MainHandler(webapp2.RequestHandler):
         #     i+=1
 
         self.response.write(template.render(event_dictionary))
+
+class EventInfo(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_environment.get_template('templates/event_specifics.html')
+        s = self.request.get('global')
+        print s
+        self.response.write(template.render())
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
