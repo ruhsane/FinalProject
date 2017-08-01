@@ -90,7 +90,8 @@ class MainHandler(webapp2.RequestHandler):
 class EventInfo(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('templates/event_specifics.html')
-
+        s = self.request.get('global')
+        print s
         self.response.write(template.render())
 
 app = webapp2.WSGIApplication([
