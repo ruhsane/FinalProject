@@ -1,0 +1,22 @@
+.mySlides {
+  display:none;
+  height: 700px;
+  width: 500px;
+}
+
+#SearchSection {
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+
+}
+
+#SearchBox {
+  position: absolute;
+  margin: auto;
+  align-items: center;
+  padding: 5px;
+  background-color: rgba(255,255,255,0.6);
+  border: 2px solid grey;
+}
