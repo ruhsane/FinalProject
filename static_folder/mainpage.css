@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
+  text-align: center;
 
 }
 
@@ -18,5 +18,26 @@
   /*margin: auto;*/
   padding: 5px;
   background-color: rgba(255,255,255,0.6);
-  border: 2px solid grey;
+  /*border: 2px solid grey;*/
+}
+
+button {
+  height: 50px;
+  width: 200px;
+  font-size: 20px;
+  background-color: #524dfe;
+}
+
+.box{
+  height: 50px;
+  width: 200px;}
+
+#spacer {
+  flex-grow: 1;
+}
+
+#TopPart {
+  border: 2px dashed grey;
+  display: flex; /*Always need for flex positioning*/
+  justify-content: center;
 }
