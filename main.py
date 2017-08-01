@@ -46,6 +46,9 @@ class MainHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template('templates/results.html')
         base_url = "http://api.eventful.com/json/events/search?app_key=dTJDKdL9vWFkMrwQ"
         #remember to add code to make more than 10 events &page_size=100
+        print "--------------"
+        print self.request.get("category")
+        print "--------------"
         url = base_url + "&location=" + str(self.request.get("location")) + "&category=" +str(self.request.get("category"))
         event_data_source= urllib2.urlopen(url)
         event_json_content = event_data_source.read()
@@ -85,6 +88,16 @@ class EventInfo(webapp2.RequestHandler):
         if event_description is None:
             event_description = "No description found"
 
+        if parsed_specific_event_dictionary['start_time'] is None:
+            event_start_time= "No start time found"
+        else:
+            event_start_time = parsed_specific_event_dictionary["start_time"]
+
+        if parsed_specific_event_dictionary['stop_time'] is None:
+            event_stop_time= "No stop time found"
+        else:
+            event_stop_time = parsed_specific_event_dictionary["stop_time"]
+
         if parsed_specific_event_dictionary["images"] is None:
             event_image_url_medium = "/resources/No_image_available.png"
         else:
@@ -94,7 +107,9 @@ class EventInfo(webapp2.RequestHandler):
             "venueName" : event_venue_name,
             "description" : event_description,
             "venueAddress" : event_venue_address,
-            "mediumPicURL" : event_image_url_medium
+            "mediumPicURL" : event_image_url_medium,
+            "startTime" : event_start_time,
+            "stopTime" : event_stop_time
         }
         self.response.write(template.render(event_dict))
 
