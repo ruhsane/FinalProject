@@ -84,8 +84,6 @@ class MainHandler(webapp2.RequestHandler):
                     event_image_url_medium[listOfEvents[i]["title"]] = "/resources/pets_image.jpg"
                 elif self.request.get('category') == 'sports':
                     event_image_url_medium[listOfEvents[i]["title"]] = "/resources/sports_image.png"
-                elif self.request.get('category') == 'music-festivals':
-                    event_image_url_medium[listOfEvents[i]["title"]] = "/resources/musics_festivals_image.jpg"
                 elif self.request.get('category') == 'comedy':
                     event_image_url_medium[listOfEvents[i]["title"]] = "/resources/comedy_image.jpg"
                 elif self.request.get('category') == 'family_fun_kids':
@@ -193,8 +191,6 @@ class EventInfo(webapp2.RequestHandler):
                 event_image_url_medium = "/resources/pets_image.jpg"
             elif self.request.get('category') == 'sports':
                 event_image_url_medium = "/resources/sports_image.png"
-            elif self.request.get('category') == 'music-festivals':
-                event_image_url_medium = "/resources/musics_festivals_image.jpg"
             elif self.request.get('category') == 'comedy':
                 event_image_url_medium = "/resources/comedy_image.jpg"
             elif self.request.get('category') == 'family_fun_kids':
