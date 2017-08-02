@@ -68,7 +68,8 @@ class MainHandler(webapp2.RequestHandler):
         event_title_venue= {}
         event_category = {}
         for event in listOfEvents:
-            event_title_list.append(listOfEvents[i]["title"])#puts all the titles in a list
+            if listOfEvents[i]["title"] not in event_title_list:
+                event_title_list.append(listOfEvents[i]["title"])#puts all the titles in a list
             event_id_list.append(listOfEvents[i]["id"])#puts all the ids in a list
             event_title_id[listOfEvents[i]["title"]] = listOfEvents[i]["id"]#conencts the title with its id
             event_title_venue[listOfEvents[i]["title"]] = listOfEvents[i]["venue_name"]
