@@ -121,6 +121,32 @@ class EventInfo(webapp2.RequestHandler):
         if parsed_specific_event_dictionary["images"] is None:
             if self.request.get('category') == 'outdoors_recreation':
                 event_image_url_medium = "/resources/outdoors_image.jpg"
+            elif self.request.get('category') == 'music':
+                event_image_url_medium = "/resources/concerts_image.gif"
+            elif self.request.get('category') == 'art':
+                event_image_url_medium = "/resources/art_image.png"
+            elif self.request.get('category') == 'animals':
+                event_image_url_medium = "/resources/pets_image.jpg"
+            elif self.request.get('category') == 'sports':
+                event_image_url_medium = "/resources/sports_image.png"
+            elif self.request.get('category') == 'music-festivals':
+                event_image_url_medium = "/resources/musics_festivals_image.jpg"
+            elif self.request.get('category') == 'comedy':
+                event_image_url_medium = "/resources/comedy_image.jpg"
+            elif self.request.get('category') == 'family_fun_kids':
+                event_image_url_medium = "/resources/family_image.jpg"
+            elif self.request.get('category') == 'singles_social':
+                event_image_url_medium = "/resources/nightlife_image.jpg"
+            elif self.request.get('category') == 'performing_arts':
+                event_image_url_medium = "/resources/performing_arts_image.jpg"
+            elif self.request.get('category') == 'learning_education':
+                event_image_url_medium = "/resources/eduacational_image.jpg"
+            elif self.request.get('category') == 'movies_film':
+                event_image_url_medium = "/resources/movies_image.jpg"
+            elif self.request.get('category') == 'food':
+                event_image_url_medium = "/resources/food_image.jpg"
+            elif self.request.get('category') == 'support':
+                event_image_url_medium = "/resources/health_image.jpg"
             elif self.request.get('category') == 'attractions':
                 event_image_url_medium = "/resources/museums_image.jpg"
             elif self.request.get('category') == 'politics_activism':
