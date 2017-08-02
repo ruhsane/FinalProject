@@ -78,7 +78,8 @@ class MainHandler(webapp2.RequestHandler):
             "eventTitleVenue": event_title_venue,
             "eventTitles": event_title_list,
             "eventIds": event_id_list,
-            "eventTitleId" : event_title_id
+            "eventTitleId" : event_title_id,
+            "eventCategory" : event_category
             }
         self.response.write(template.render(event_dictionary))
 
