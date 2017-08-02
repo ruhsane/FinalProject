@@ -27,19 +27,20 @@ jinja_environment = jinja2.Environment(loader= jinja2.FileSystemLoader(os.path.d
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-
+        template = jinja_environment.get_template('templates/index.html')
         user = users.get_current_user()
         if user:
-            greeting = ('(<a href="%s">Sign Out</a>)' % (users.create_logout_url('/signin')))
+            nickname = user.nickname()
+            greeting = ('Hello, ' + nickname + "!" + '<a href="%s">Sign Out</a>' % (users.create_logout_url('/')))
         else:
-            greeting = ('<a href="%s">Sign In</a>' % users.create_login_url('/signin'))
-
+            greeting = ('<a href="%s">Sign In</a>' % users.create_login_url('/'))
         signin = ('<html><body><section id="WholeTopPart"><div class="top" id="SignIn">%s</div></section></body></html>' % greeting)
+        login = {
+                "Signin" : signin
+                }
 
-        login = {"Signin" : signin}
 
 
-        template = jinja_environment.get_template('templates/index.html')
         self.response.write(template.render(login))
 
     def post(self):
