@@ -9,12 +9,23 @@
 				{{error}}
 			{% else %}
 				{% for title in eventTitles %}
-					<li><a href = "/event_specifics?id={{eventTitleId[title]}}&category={{eventCategory[title]}}">{{title}}</a></li>
-				 	{{eventTitleVenue[title]}}
+				<div>
+					<ul>
+						<li>
+							<img src = {{eventTitlePhotoUrl[title]}}></a>
+							<h3><li><a href = "/event_specifics?id={{eventTitleId[title]}}&category={{eventCategory[title]}}">{{title}}</a></li></h3>
+							<p>{{eventTitleVenue[title]}}</p>
+						</li>
+					</ul>
+				</div>
 				{% endfor %}
 			{% endif %}
 		</ul>
 
-		<img id="fadeimg" src="http://pa1.narvii.com/6461/57d12880e007e56dc1e43bd99393ed8a6f3166c0_hq.gif">
+
+
+
+
+		<!-- <img id="fadeimg" src="http://pa1.narvii.com/6461/57d12880e007e56dc1e43bd99393ed8a6f3166c0_hq.gif"> -->
 	</body>
 </html>
