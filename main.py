@@ -81,6 +81,7 @@ class MainHandler(webapp2.RequestHandler):
         self.response.write(template.render(event_dictionary))
 
 
+
 class EventInfo(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('templates/event_specifics.html')
