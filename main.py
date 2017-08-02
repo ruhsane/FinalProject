@@ -181,6 +181,54 @@ class EventInfo(webapp2.RequestHandler):
             else:
                 event_image_url_medium = parsed_specific_event_dictionary["images"]["image"]["medium"]["url"]
 
+
+
+        if event_start_time is not "No start time found":
+            start_time_list = event_start_time.split(" ")
+            start_time_date = start_time_list[0].split("-")
+            start_time_time = start_time_list[1].split(":")
+
+            year = start_time_date[0]
+            month = start_time_date[1]
+            day = start_time_date[2]
+            finalDate = day + "/" + month + "/" + year + " "
+
+            AMorPM = ""
+            minute = start_time_time[1]
+            if start_time_time[0] >= 12:
+                AMorPM = "PM"
+            else:
+                AMorPM = "AM"
+            hour = int(start_time_time[0]) % 12
+            if hour == 0:
+                hour = 12
+            finalTime = str(hour) + ":" + str(minute) + " " + AMorPM
+
+            event_start_time = finalDate + finalTime
+
+        if event_stop_time is not "No stop time found":
+            stop_time_list = event_stop_time.split(" ")
+            stop_time_date = stop_time_list[0].split("-")
+            stop_time_time = stop_time_list[1].split(":")
+
+            year = stop_time_date[0]
+            month = stop_time_date[1]
+            day = stop_time_date[2]
+            finalDate = day + "/" + month + "/" + year + " "
+
+            AMorPM = ""
+            minute = stop_time_time[1]
+            if stop_time_time[0] >= 12:
+                AMorPM = "PM"
+            else:
+                AMorPM = "AM"
+            hour = int(stop_time_time[0]) % 12
+            if hour == 0:
+                hour = 12
+            finalTime = str(hour) + ":" + str(minute) + " " + AMorPM
+
+            event_stop_time = finalDate + finalTime
+
         event_dict = {
             "title" : event_title,
             "venueName" : event_venue_name,
@@ -190,6 +238,7 @@ class EventInfo(webapp2.RequestHandler):
             "startTime" : event_start_time,
             "stopTime" : event_stop_time
         }
+
         self.response.write(template.render(event_dict))
 
 app = webapp2.WSGIApplication([
