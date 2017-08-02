@@ -66,17 +66,21 @@ class MainHandler(webapp2.RequestHandler):
         event_id_list = []
         event_title_id = {}
         event_title_venue= {}
+        event_category = {}
         for event in listOfEvents:
-            event_title_list.append(listOfEvents[i]["title"])#puts all the titles in a list
+            if listOfEvents[i]["title"] not in event_title_list:
+                event_title_list.append(listOfEvents[i]["title"])#puts all the titles in a list
             event_id_list.append(listOfEvents[i]["id"])#puts all the ids in a list
             event_title_id[listOfEvents[i]["title"]] = listOfEvents[i]["id"]#conencts the title with its id
             event_title_venue[listOfEvents[i]["title"]] = listOfEvents[i]["venue_name"]
+            event_category[listOfEvents[i]["title"]] = str(self.request.get("category"))
             i += 1
         event_dictionary = {
             "eventTitleVenue": event_title_venue,
             "eventTitles": event_title_list,
             "eventIds": event_id_list,
-            "eventTitleId" : event_title_id
+            "eventTitleId" : event_title_id,
+            "eventCategory" : event_category
             }
         self.response.write(template.render(event_dictionary))
 
@@ -86,12 +90,13 @@ class EventInfo(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('templates/event_specifics.html')
         base_url = "http://api.eventful.com/json/events/get?app_key=dTJDKdL9vWFkMrwQ&id="
-        url = base_url + self.request.get("id")
+        url = base_url + self.request.get("id") + '&category=' + self.request.get("category")
         specific_event_data_source= urllib2.urlopen(url)
         specific_event_json_content = specific_event_data_source.read()
         parsed_specific_event_dictionary = json.loads(specific_event_json_content)
 
         event_title = parsed_specific_event_dictionary["title"]
+        event_category = parsed_specific_event_dictionary["categories"]["category"][0]["id"]
 
         event_venue_name = parsed_specific_event_dictionary["venue_name"]
 
@@ -114,9 +119,38 @@ class EventInfo(webapp2.RequestHandler):
             event_stop_time = parsed_specific_event_dictionary["stop_time"]
 
         if parsed_specific_event_dictionary["images"] is None:
-            event_image_url_medium = "/resources/No_image_available.png"
+            if self.request.get('category') == 'outdoors_recreation':
+                event_image_url_medium = "/resources/outdoors_image.jpg"
+            elif self.request.get('category') == 'attractions':
+                event_image_url_medium = "/resources/museums_image.jpg"
+            elif self.request.get('category') == 'politics_activism':
+                event_image_url_medium = "/resources/politics_image.jpg"
+            elif self.request.get('category') == 'science':
+                event_image_url_medium = "/resources/science_image.jpg"
+            elif self.request.get('category') == 'technology':
+                event_image_url_medium = "/resources/technology_image.jpg"
+            elif self.request.get('category') == 'conference':
+                event_image_url_medium = "/resources/conferences_image.jpg"
+            elif self.request.get('category') == 'fundraisers':
+                event_image_url_medium = "/resources/fundraiser_image.jpg"
+            elif self.request.get('category') == 'holiday':
+                event_image_url_medium = "/resources/holiday_image.jpg"
+            elif self.request.get('category') == 'community':
+                event_image_url_medium = "/resources/community_image.jpg"
+            elif self.request.get('category') == 'books':
+                event_image_url_medium = "/resources/books_image.jpg"
+            elif self.request.get('category') == 'business':
+                event_image_url_medium = "/resources/business_image.jpg"
+            elif self.request.get('category') == 'schools_alumni':
+                event_image_url_medium = "/resources/school_events.jpg"
+            elif self.request.get('category') == 'clubs_association':
+                event_image_url_medium = "/resources/organizations_image.jpg"
+            elif self.request.get('category') == 'sales':
+                event_image_url_medium = "/resources/sales_image.jpg"
+            elif self.request.get('category') == 'religion_spirituality':
+                event_image_url_medium = "/resources/religion_image.jpg"
         else:
-            if parsed_specific_event_dictionary["images"]["image"] > 1:
+            if not parsed_specific_event_dictionary["images"]["image"]["medium"]:
                 event_image_url_medium = parsed_specific_event_dictionary["images"]["image"][0]["medium"]["url"]
             else:
                 event_image_url_medium = parsed_specific_event_dictionary["images"]["image"]["medium"]["url"]
