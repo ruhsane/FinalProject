@@ -119,7 +119,35 @@ class EventInfo(webapp2.RequestHandler):
 
         if parsed_specific_event_dictionary["images"] is None:
             if self.request.get('category') == 'outdoors_recreation':
-                event_image_url_medium = "/resources/outdoors_image"
+                event_image_url_medium = "/resources/outdoors_image.jpg"
+            elif self.request.get('category') == 'attractions':
+                event_image_url_medium = "/resources/museums_image.jpg"
+            elif self.request.get('category') == 'politics_activism':
+                event_image_url_medium = "/resources/politics_image.jpg"
+            elif self.request.get('category') == 'science':
+                event_image_url_medium = "/resources/science_image.jpg"
+            elif self.request.get('category') == 'technology':
+                event_image_url_medium = "/resources/technology_image.jpg"
+            elif self.request.get('category') == 'conference':
+                event_image_url_medium = "/resources/conferences_image.jpg"
+            elif self.request.get('category') == 'fundraisers':
+                event_image_url_medium = "/resources/fundraiser_image.jpg"
+            elif self.request.get('category') == 'holiday':
+                event_image_url_medium = "/resources/holiday_image.jpg"
+            elif self.request.get('category') == 'community':
+                event_image_url_medium = "/resources/community_image.jpg"
+            elif self.request.get('category') == 'books':
+                event_image_url_medium = "/resources/books_image.jpg"
+            elif self.request.get('category') == 'business':
+                event_image_url_medium = "/resources/business_image.jpg"
+            elif self.request.get('category') == 'schools_alumni':
+                event_image_url_medium = "/resources/school_events.jpg"
+            elif self.request.get('category') == 'clubs_association':
+                event_image_url_medium = "/resources/organizations_image.jpg"
+            elif self.request.get('category') == 'sales':
+                event_image_url_medium = "/resources/sales_image.jpg"
+            elif self.request.get('category') == 'religion_spirituality':
+                event_image_url_medium = "/resources/religion_image.jpg"
         else:
             if not parsed_specific_event_dictionary["images"]["image"]["medium"]:
                 event_image_url_medium = parsed_specific_event_dictionary["images"]["image"][0]["medium"]["url"]
