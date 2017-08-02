@@ -7,7 +7,7 @@
 				{{error}}
 			{% else %}
 				{% for title in eventTitles %}
-					<li><a href = "/event_specifics?id={{eventTitleId[title]}}">{{title}}</a></li>
+					<li><a href = "/event_specifics?id={{eventTitleId[title]}}?category={{eventCategory[title]}}">{{title}}</a></li>
 				 	{{eventTitleVenue[title]}}
 				{% endfor %}
 			{% endif %}
