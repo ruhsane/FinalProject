@@ -67,7 +67,8 @@ class MainHandler(webapp2.RequestHandler):
         event_title_id = {}
         event_title_venue= {}
         for event in listOfEvents:
-            event_title_list.append(listOfEvents[i]["title"])#puts all the titles in a list
+            if listOfEvents[i]["title"] not in event_title_list:
+                event_title_list.append(listOfEvents[i]["title"])#puts all the titles in a list
             event_id_list.append(listOfEvents[i]["id"])#puts all the ids in a list
             event_title_id[listOfEvents[i]["title"]] = listOfEvents[i]["id"]#conencts the title with its id
             event_title_venue[listOfEvents[i]["title"]] = listOfEvents[i]["venue_name"]
@@ -113,7 +114,7 @@ class EventInfo(webapp2.RequestHandler):
         else:
             event_stop_time = parsed_specific_event_dictionary["stop_time"]
 
-        if parsed_specific_event_dictionary["images"] is None and event_category == 'attractions':
+        if parsed_specific_event_dictionary["images"] is None:
             event_image_url_medium = "/resources/museums_image.jpg"
         else:
             if not parsed_specific_event_dictionary["images"]["image"]["medium"]:
