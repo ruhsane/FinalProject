@@ -176,11 +176,10 @@ class EventInfo(webapp2.RequestHandler):
             elif self.request.get('category') == 'religion_spirituality':
                 event_image_url_medium = "/resources/religion_image.jpg"
         else:
-            if not parsed_specific_event_dictionary["images"]["image"]["medium"]:
+            if type(parsed_specific_event_dictionary["images"]["image"]) is list:
                 event_image_url_medium = parsed_specific_event_dictionary["images"]["image"][0]["medium"]["url"]
             else:
                 event_image_url_medium = parsed_specific_event_dictionary["images"]["image"]["medium"]["url"]
-
 
 
         if event_start_time is not "No start time found":
