@@ -1,8 +1,10 @@
 <html>
 	<head>
+		<link rel="stylesheet" href="resources/listpage.css">
+
 	</head>
 	<body>
-		<ul>
+		<ul id="list">
 			{% if error %}
 				{{error}}
 			{% else %}
@@ -12,5 +14,7 @@
 				{% endfor %}
 			{% endif %}
 		</ul>
+
+		<img id="fadeimg" src="http://pa1.narvii.com/6461/57d12880e007e56dc1e43bd99393ed8a6f3166c0_hq.gif">
 	</body>
 </html>
