@@ -53,6 +53,7 @@ class MainHandler(webapp2.RequestHandler):
         event_data_source= urllib2.urlopen(url)
         event_json_content = event_data_source.read()
         parsed_event_dictionary = json.loads(event_json_content)
+        print parsed_event_dictionary
         if parsed_event_dictionary['events'] is not None:
             listOfEvents = parsed_event_dictionary["events"]["event"]
         else:
@@ -89,7 +90,6 @@ class EventInfo(webapp2.RequestHandler):
         specific_event_data_source= urllib2.urlopen(url)
         specific_event_json_content = specific_event_data_source.read()
         parsed_specific_event_dictionary = json.loads(specific_event_json_content)
-
         event_title = parsed_specific_event_dictionary["title"]
 
         event_venue_name = parsed_specific_event_dictionary["venue_name"]
