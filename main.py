@@ -53,7 +53,6 @@ class MainHandler(webapp2.RequestHandler):
         event_data_source= urllib2.urlopen(url)
         event_json_content = event_data_source.read()
         parsed_event_dictionary = json.loads(event_json_content)
-        print parsed_event_dictionary
         if parsed_event_dictionary['events'] is not None:
             listOfEvents = parsed_event_dictionary["events"]["event"]
         else:
@@ -90,7 +89,9 @@ class EventInfo(webapp2.RequestHandler):
         specific_event_data_source= urllib2.urlopen(url)
         specific_event_json_content = specific_event_data_source.read()
         parsed_specific_event_dictionary = json.loads(specific_event_json_content)
+
         event_title = parsed_specific_event_dictionary["title"]
+        event_category = parsed_specific_event_dictionary["categories"]["category"][0]["id"]
 
         event_venue_name = parsed_specific_event_dictionary["venue_name"]
 
@@ -112,8 +113,8 @@ class EventInfo(webapp2.RequestHandler):
         else:
             event_stop_time = parsed_specific_event_dictionary["stop_time"]
 
-        if parsed_specific_event_dictionary["images"] is None:
-            event_image_url_medium = "/resources/No_image_available.png"
+        if parsed_specific_event_dictionary["images"] is None and event_category == 'attractions':
+            event_image_url_medium = "/resources/museums_image.jpg"
         else:
             if not parsed_specific_event_dictionary["images"]["image"]["medium"]:
                 event_image_url_medium = parsed_specific_event_dictionary["images"]["image"][0]["medium"]["url"]
