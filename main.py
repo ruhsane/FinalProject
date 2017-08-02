@@ -44,7 +44,7 @@ class MainHandler(webapp2.RequestHandler):
 
     def post(self):
         template = jinja_environment.get_template('templates/results.html')
-        base_url = "http://api.eventful.com/json/events/search?app_key=dTJDKdL9vWFkMrwQ"
+        base_url = "http://api.eventful.com/json/events/search?app_key=dTJDKdL9vWFkMrwQ&page_size=70"
         #remember to add code to make more than 10 events &page_size=100
         print "--------------"
         print self.request.get("category")
@@ -53,17 +53,27 @@ class MainHandler(webapp2.RequestHandler):
         event_data_source= urllib2.urlopen(url)
         event_json_content = event_data_source.read()
         parsed_event_dictionary = json.loads(event_json_content)
-        listOfEvents = parsed_event_dictionary["events"]["event"]
+        if parsed_event_dictionary['events'] is not None:
+            listOfEvents = parsed_event_dictionary["events"]["event"]
+        else:
+            listOfEvents = []
+            event_dictionary = {
+            "error" : "Sorry! No results found."
+            }
+            self.response.write(template.render(event_dictionary))
         i = 0
         event_title_list = []
         event_id_list = []
         event_title_id = {}
+        event_title_venue= {}
         for event in listOfEvents:
             event_title_list.append(listOfEvents[i]["title"])#puts all the titles in a list
             event_id_list.append(listOfEvents[i]["id"])#puts all the ids in a list
             event_title_id[listOfEvents[i]["title"]] = listOfEvents[i]["id"]#conencts the title with its id
+            event_title_venue[listOfEvents[i]["title"]] = listOfEvents[i]["venue_name"]
             i += 1
         event_dictionary = {
+            "eventTitleVenue": event_title_venue,
             "eventTitles": event_title_list,
             "eventIds": event_id_list,
             "eventTitleId" : event_title_id

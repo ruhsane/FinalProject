@@ -3,9 +3,14 @@
 	</head>
 	<body>
 		<ul>
-			{% for title in eventTitles %}
-				<li><a href = "/event_specifics?id={{eventTitleId[title]}}">{{title}}</a></li>
-			{% endfor %}
+			{% if error %}
+				{{error}}
+			{% else %}
+				{% for title in eventTitles %}
+					<li><a href = "/event_specifics?id={{eventTitleId[title]}}">{{title}}</a></li>
+				 	{{eventTitleVenue[title]}}
+				{% endfor %}
+			{% endif %}
 		</ul>
 	</body>
 </html>
