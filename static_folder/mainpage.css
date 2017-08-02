@@ -72,11 +72,16 @@ select {
 
 }
 
+#mainheader {
+  font-family: 'Lobster', cursive;
+  font-size: 60px;
+}
+
 button {
   height: 50px;
   width: 200px;
   font-size: 20px;
   background-color: #FD64FD;
-  font-family: Comic Sans MS, Comic Sans, cursive;
+  font-family: 'Lobster', cursive;
   cursor: pointer;
 }
