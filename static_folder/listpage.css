@@ -35,6 +35,61 @@
     to   { opacity: 1; }
 }
 
+a:-webkit-any-link {
+    color: black;
+    cursor: auto;
+    text-decoration: none;
+}
+
+
+a:-webkit-any-link:hover{
+  color: #FD64FD;
+}
+
+* {margin: 0; padding: 0;}
+
+div {
+  margin: 20px;
+  width: 700px;
+  height: 150px;
+  background: #eee;
+}
+
+ul {
+  list-style-type: none;
+  width: 700px;
+  height: 150px;
+}
+
+h3 {
+  font: bold 20px Helvetica, Verdana, sans-serif;
+}
+
+li img {
+  float: left;
+  margin: 0 15px 0 0;
+  height: 120px;
+  width: 200px;
+}
+
+li p {
+  float: center;
+  font: 200 15px Georgia, Times New Roman, serif;
+  overflow: auto;
+
+}
+
+li {
+  padding: 10px;
+  overflow: auto;
+  height: 140px;
+}
+
+li:hover {
+  background: white;
+  cursor: pointer;
+}
+
 
 
 #fadeimg {
