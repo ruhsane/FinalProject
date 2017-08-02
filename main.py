@@ -115,7 +115,7 @@ class EventInfo(webapp2.RequestHandler):
         if parsed_specific_event_dictionary["images"] is None:
             event_image_url_medium = "/resources/No_image_available.png"
         else:
-            if parsed_specific_event_dictionary["images"]["image"] > 1:
+            if not parsed_specific_event_dictionary["images"]["image"]["medium"]:
                 event_image_url_medium = parsed_specific_event_dictionary["images"]["image"][0]["medium"]["url"]
             else:
                 event_image_url_medium = parsed_specific_event_dictionary["images"]["image"]["medium"]["url"]
