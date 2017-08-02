@@ -68,15 +68,79 @@ class MainHandler(webapp2.RequestHandler):
         event_title_id = {}
         event_title_venue= {}
         event_category = {}
+        event_image_url_medium = {}
         for event in listOfEvents:
             if listOfEvents[i]["title"] not in event_title_list:
                 event_title_list.append(listOfEvents[i]["title"])#puts all the titles in a list
             event_id_list.append(listOfEvents[i]["id"])#puts all the ids in a list
             event_title_id[listOfEvents[i]["title"]] = listOfEvents[i]["id"]#conencts the title with its id
+            if listOfEvents[i]["image"]is None:
+                if self.request.get('category') == 'outdoors_recreation':
+                    event_image_url_medium[listOfEvents[i]["title"]] = "/resources/outdoors_image.jpg"
+                elif self.request.get('category') == 'music':
+                    event_image_url_medium[listOfEvents[i]["title"]] = "/resources/concerts_image.gif"
+                elif self.request.get('category') == 'art':
+                    event_image_url_medium[listOfEvents[i]["title"]] = "/resources/art_image.png"
+                elif self.request.get('category') == 'animals':
+                    event_image_url_medium[listOfEvents[i]["title"]] = "/resources/pets_image.jpg"
+                elif self.request.get('category') == 'sports':
+                    event_image_url_medium[listOfEvents[i]["title"]] = "/resources/sports_image.png"
+                elif self.request.get('category') == 'music-festivals':
+                    event_image_url_medium[listOfEvents[i]["title"]] = "/resources/musics_festivals_image.jpg"
+                elif self.request.get('category') == 'comedy':
+                    event_image_url_medium[listOfEvents[i]["title"]] = "/resources/comedy_image.jpg"
+                elif self.request.get('category') == 'family_fun_kids':
+                    event_image_url_medium[listOfEvents[i]["title"]] = "/resources/family_image.jpg"
+                elif self.request.get('category') == 'singles_social':
+                    event_image_url_medium[listOfEvents[i]["title"]] = "/resources/nightlife_image.jpg"
+                elif self.request.get('category') == 'performing_arts':
+                    event_image_url_medium[listOfEvents[i]["title"]] = "/resources/performing_arts_image.jpg"
+                elif self.request.get('category') == 'learning_education':
+                    event_image_url_medium[listOfEvents[i]["title"]] = "/resources/educational_image.jpg"
+                elif self.request.get('category') == 'movies_film':
+                    event_image_url_medium[listOfEvents[i]["title"]] = "/resources/movies_image.jpg"
+                elif self.request.get('category') == 'food':
+                    event_image_url_medium[listOfEvents[i]["title"]] = "/resources/food_image.jpg"
+                elif self.request.get('category') == 'support':
+                    event_image_url_medium[listOfEvents[i]["title"]] = "/resources/health_image.jpg"
+                elif self.request.get('category') == 'attractions':
+                    event_image_url_medium[listOfEvents[i]["title"]] = "/resources/museums_image.jpg"
+                elif self.request.get('category') == 'politics_activism':
+                    event_image_url_medium[listOfEvents[i]["title"]] = "/resources/politics_image.jpg"
+                elif self.request.get('category') == 'science':
+                    event_image_url_medium[listOfEvents[i]["title"]] = "/resources/science_image.jpg"
+                elif self.request.get('category') == 'technology':
+                    event_image_url_medium[listOfEvents[i]["title"]] = "/resources/technology_image.jpg"
+                elif self.request.get('category') == 'conference':
+                    event_image_url_medium[listOfEvents[i]["title"]] = "/resources/conferences_image.jpg"
+                elif self.request.get('category') == 'fundraisers':
+                    event_image_url_medium[listOfEvents[i]["title"]] = "/resources/fundraiser_image.jpg"
+                elif self.request.get('category') == 'holiday':
+                    event_image_url_medium[listOfEvents[i]["title"]] = "/resources/holiday_image.jpg"
+                elif self.request.get('category') == 'community':
+                    event_image_url_medium[listOfEvents[i]["title"]] = "/resources/community_image.jpg"
+                elif self.request.get('category') == 'books':
+                    event_image_url_medium[listOfEvents[i]["title"]] = "/resources/books_image.jpg"
+                elif self.request.get('category') == 'business':
+                    event_image_url_medium[listOfEvents[i]["title"]] = "/resources/business_image.jpg"
+                elif self.request.get('category') == 'schools_alumni':
+                    event_image_url_medium[listOfEvents[i]["title"]] = "/resources/school_events.jpg"
+                elif self.request.get('category') == 'clubs_association':
+                    event_image_url_medium[listOfEvents[i]["title"]] = "/resources/organizations_image.jpg"
+                elif self.request.get('category') == 'sales':
+                    event_image_url_medium[listOfEvents[i]["title"]] = "/resources/sales_image.jpg"
+                elif self.request.get('category') == 'religion_spirituality':
+                    event_image_url_medium[listOfEvents[i]["title"]] = "/resources/religion_image.jpg"
+            else:
+                if type(listOfEvents[i]["image"]) is list:
+                    event_image_url_medium[listOfEvents[i]["title"]] = listOfEvents[i]["image"][0]["medium"]["url"]
+                else:
+                    event_image_url_medium[listOfEvents[i]["title"]] = listOfEvents[i]["image"]["medium"]["url"]
             event_title_venue[listOfEvents[i]["title"]] = listOfEvents[i]["venue_name"]
             event_category[listOfEvents[i]["title"]] = str(self.request.get("category"))
             i += 1
         event_dictionary = {
+            "eventTitlePhotoUrl": event_image_url_medium,
             "eventTitleVenue": event_title_venue,
             "eventTitles": event_title_list,
             "eventIds": event_id_list,

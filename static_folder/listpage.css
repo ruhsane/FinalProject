@@ -46,30 +46,30 @@
 }
 
 @keyframes fadeout {
-    from { opacity: 1; }
-    to   { opacity: 0; }
+    from { opacity: 1; visibility: visible; }
+    to   { opacity: 0; visibility: hidden; }
 }
 
 /* Firefox < 16 */
 @-moz-keyframes fadeout {
-    from { opacity: 1; }
-    to   { opacity: 0; }
+    from { opacity: 1; visibility: visible; }
+    to   { opacity: 0; visibility: hidden; }
 }
 
 /* Safari, Chrome and Opera > 12.1 */
 @-webkit-keyframes fadeout {
-    from { opacity: 1; }
-    to   { opacity: 0; }
+    from { opacity: 1; visibility: visible; }
+    to   { opacity: 0; visibility: hidden; }
 }
 
 /* Internet Explorer */
 @-ms-keyframes fadeout {
-    from { opacity: 1; }
-    to   { opacity: 0; }
+    from { opacity: 1; visibility: visible; }
+    to   { opacity: 0; visibility: hidden; }
 }
 
 /* Opera < 12.1 */
 @-o-keyframes fadeout {
-    from { opacity: 1; }
-    to   { opacity: 0; }
+    from { opacity: 1; visibility: visible; }
+    to   { opacity: 0; visibility: hidden; }
 }
