@@ -17,6 +17,9 @@
 		<ul id="list">
 			{% if error %}
 				{{error}}
+				<form method="get" action="/">
+	    <button type="submit">Back</button>
+	</form>
 			{% else %}
 				{% for title in eventTitles %}
 				<a href = "/event_specifics?id={{eventTitleId[title]}}&category={{eventCategory[title]}}">
