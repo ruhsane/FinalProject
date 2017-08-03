@@ -47,8 +47,8 @@ a:-webkit-any-link:hover{
 
 #contentdiv {
   margin: 20px;
-  width: 700px;
-  height: 150px;
+  width: 800px;
+  height: 200px;
   background: #eee;
   cursor: default;
 }
@@ -66,8 +66,13 @@ h3 {
 li img {
   float: left;
   margin: 0 15px 0 0;
+<<<<<<< HEAD
+  height: 170px;
+  width: 170px;
+=======
   height: 120px;
   width: 160px;
+>>>>>>> a60e464f3535929c8be622bc93997faffde9dea6
 }
 
 li p {
@@ -79,8 +84,9 @@ li p {
 
 li {
   padding: 10px;
-  overflow: auto;
-  height: 140px;
+  /*overflow: auto;*/
+  height: 200px;
+  height: 800px;
 }
 
 li:hover {
@@ -90,7 +96,11 @@ li:hover {
 
 
 #savebutton {
-
+  padding: 5 10;
+  border: 0.5px;
+  background: pink;
+  font: 15px Helvetica, Verdana, sans-serif;
+  cursor: pointer;
 }
 /*
 #fadeimg {
