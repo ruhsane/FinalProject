@@ -13,6 +13,7 @@
 				<div class="top" id="SignIn"> {{Signin}} </div>
 				<!-- <div class="top" id="SignIn">My Events </div> -->
 		</section>
+<<<<<<< HEAD
 		<h1>Search Results:</h1>
 		{% if error %}
 			{{error}}
@@ -21,6 +22,16 @@
 			</form>
 		{% else %}
 			<ul id="list">
+=======
+	<h1>Search Results:</h1>
+	{% if error %}
+		{{error}}
+		<form method="get" action="/">
+			<button id=backbutton type="submit">Back</button>
+		</form>
+	{% else %}
+		<ul id="list">
+>>>>>>> 725d45b4230e99e0a9102b1148762b673bfe2128
 				{% for title in eventTitles %}
 					<a href = "/event_specifics?id={{eventTitleId[title]}}&category={{eventCategory[title]}}">
 						<div id=contentdiv>
@@ -55,7 +66,15 @@
 			</a>
 >>>>>>> e8466390187ad6685009c0b62cc11e346f3a4f2d
 				{% endfor %}
+<<<<<<< HEAD
 		{% endif %}
+=======
+				<form method="get" action="/">
+					<button id=backbutton type="submit">Back</button>
+				</form>
+			{% endif %}
+			<br>
+>>>>>>> 725d45b4230e99e0a9102b1148762b673bfe2128
 		</ul>
 	</body>
 </html>
