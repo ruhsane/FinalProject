@@ -34,14 +34,14 @@
 								Start Time: {{eventStartTimeId[title]}}</p>
 								<p><i class="fa fa-clock-o" aria-hidden="true" style="font-size:20px"></i>
 								Stop Time: {{eventStopTimeId[title]}}</p>
+							<form action = "/saved_events">
+								<input type = "hidden" name = "event_id" value = {{eventTitleId[title]}}>
+								<!-- fix the url thingy not passing ?id=... -->
+								<button id=savebutton>Save Event</button>
+							</form>
 						</li>
 				</div>
 			</a>
-				<form action = "/saved_events">
-					<input type = "hidden" name = "event_id" value = {{eventTitleId[title]}}>
-					<!-- fix the url thingy not passing ?id=... -->
-					<button>Save Event</button>
-				</form>
 				{% endfor %}
 			{% endif %}
 			<br>
