@@ -650,7 +650,7 @@ class ListOfSavedEvents(webapp2.RequestHandler):
             "res" : result
         }
         self.response.write(template.render(return_dict))
-        
+
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/results', ResultsHandler),#results handler
