@@ -39,21 +39,12 @@ class MainHandler(webapp2.RequestHandler):
                 "Signin" : signin
                 }
 
+
+
         self.response.write(template.render(login))
 
     def post(self):
         template = jinja_environment.get_template('templates/results.html')
-        user = users.get_current_user()
-        if user:
-            nickname = user.nickname()
-            greeting = ('Hello, ' + nickname + "!" + '<a href="%s">Sign Out</a>' % (users.create_logout_url('/')))
-        else:
-            greeting = ('<a href="%s">Sign In</a>' % users.create_login_url('/'))
-        signin = ('<html><body><section id="WholeTopPart"><div class="top" id="SignIn">%s</div></section></body></html>' % greeting)
-
-
-        #self.response.write(template.render(login))
-
         base_url = "http://api.eventful.com/json/events/search?app_key=dTJDKdL9vWFkMrwQ&page_size=70"
         #remember to add code to make more than 10 events &page_size=100
         print "--------------"
@@ -78,11 +69,73 @@ class MainHandler(webapp2.RequestHandler):
         event_title_venue= {}
         event_category = {}
         event_image_url_medium = {}
+        event_start_time_id = {}
+        event_stop_time_id = {}
         for event in listOfEvents:
             if listOfEvents[i]["title"] not in event_title_list:
                 event_title_list.append(listOfEvents[i]["title"])#puts all the titles in a list
             event_id_list.append(listOfEvents[i]["id"])#puts all the ids in a list
             event_title_id[listOfEvents[i]["title"]] = listOfEvents[i]["id"]#conencts the title with its id
+            if listOfEvents[i]['start_time'] is None:
+                event_start_time= "No start time found"
+                event_start_time_id[listOfEvents[i]["title"]]= "No start time found"
+            else:
+                event_start_time = listOfEvents[i]["start_time"]
+
+            if listOfEvents[i]['stop_time'] is None:
+                event_stop_time= "No stop time found"
+                event_stop_time_id[listOfEvents[i]["title"]] = "No stop time found"
+            else:
+                event_stop_time = listOfEvents[i]["stop_time"]
+            if event_start_time is not "No start time found":
+                start_time_list = event_start_time.split(" ")
+                start_time_date = start_time_list[0].split("-")
+                start_time_time = start_time_list[1].split(":")
+
+                year = start_time_date[0]
+                month = start_time_date[1]
+                day = start_time_date[2]
+                finalDate = day + "/" + month + "/" + year + " "
+
+                AMorPM = ""
+                minute = start_time_time[1]
+                if int(start_time_time[0]) >= 12:
+                    AMorPM = "PM"
+                else:
+                    AMorPM = "AM"
+                hour = int(start_time_time[0]) % 12
+                if hour == 0:
+                    hour = 12
+                finalTime = str(hour) + ":" + str(minute) + " " + AMorPM
+
+                event_start_time = finalDate + finalTime
+                event_start_time_id[listOfEvents[i]["title"]] = event_start_time
+
+
+            if event_stop_time is not "No stop time found":
+                stop_time_list = event_stop_time.split(" ")
+                stop_time_date = stop_time_list[0].split("-")
+                stop_time_time = stop_time_list[1].split(":")
+
+                year = stop_time_date[0]
+                month = stop_time_date[1]
+                day = stop_time_date[2]
+                finalDate = day + "/" + month + "/" + year + " "
+
+                AMorPM = ""
+                minute = stop_time_time[1]
+                if int(stop_time_time[0]) >= 12:
+                    AMorPM = "PM"
+                else:
+                    AMorPM = "AM"
+                hour = int(stop_time_time[0]) % 12
+                if hour == 0:
+                    hour = 12
+                finalTime = str(hour) + ":" + str(minute) + " " + AMorPM
+
+                event_stop_time = finalDate + finalTime
+                event_stop_time_id[listOfEvents[i]["title"]] = event_stop_time
+
             if listOfEvents[i]["image"]is None:
                 if self.request.get('category') == 'outdoors_recreation':
                     event_image_url_medium[listOfEvents[i]["title"]] = "/resources/outdoors_image.jpg"
@@ -153,7 +206,8 @@ class MainHandler(webapp2.RequestHandler):
             "eventIds": event_id_list,
             "eventTitleId" : event_title_id,
             "eventCategory" : event_category,
-            "Signin" : signin
+            "eventStartTimeId": event_start_time_id,
+            "eventStopTimeId": event_stop_time_id
             }
         self.response.write(template.render(event_dictionary))
 
@@ -182,9 +236,10 @@ class EventInfo(webapp2.RequestHandler):
 
         event_venue_name = parsed_specific_event_dictionary["venue_name"]
 
+
         if "venue_address" in parsed_specific_event_dictionary:
             event_venue_address = parsed_specific_event_dictionary["venue_address"]
-        else: event_venue_address = "location not found"
+        else: event_venue_address = "Sorry. No location address found"
 
         event_description = parsed_specific_event_dictionary["description"]
         if event_description is None:
@@ -274,13 +329,17 @@ class EventInfo(webapp2.RequestHandler):
 
             AMorPM = ""
             minute = start_time_time[1]
-            if start_time_time[0] >= 12:
+            print "==================="
+            print start_time_time[0]
+            if int(start_time_time[0]) >= 12:
                 AMorPM = "PM"
             else:
                 AMorPM = "AM"
             hour = int(start_time_time[0]) % 12
             if hour == 0:
                 hour = 12
+            print "======================="
+            print AMorPM
             finalTime = str(hour) + ":" + str(minute) + " " + AMorPM
 
             event_start_time = finalDate + finalTime
@@ -297,7 +356,7 @@ class EventInfo(webapp2.RequestHandler):
 
             AMorPM = ""
             minute = stop_time_time[1]
-            if stop_time_time[0] >= 12:
+            if int(stop_time_time[0]) >= 12:
                 AMorPM = "PM"
             else:
                 AMorPM = "AM"
