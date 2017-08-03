@@ -250,7 +250,7 @@ class EventInfo(webapp2.RequestHandler):
             event_stop_time= "No stop time found"
         else:
             event_stop_time = parsed_specific_event_dictionary["stop_time"]
-
+        event_image_url_medium = {}
         if parsed_specific_event_dictionary["images"] is None:
             if self.request.get('category') == 'outdoors_recreation':
                 event_image_url_medium = "/resources/outdoors_image.jpg"
