@@ -1,6 +1,5 @@
 
 a:-webkit-any-link {
-    color:#FD64FD;
     font-family: Comic Sans MS, Comic Sans, cursive;
     font-size: 20px;
     /*cursor: auto;*/
@@ -39,8 +38,9 @@ body {
 
 #SignIn {
   /*font-family: Chalkduster, fantasy;*/
-  font: 20px Chalkduster, fantasy white;
-  color:#FD64FD;
+  font: 20px Chalkduster, fantasy ;
+  color: #FD64FD;
+
 }
 
 

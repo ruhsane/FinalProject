@@ -223,6 +223,14 @@ class EventInfo(webapp2.RequestHandler):
 class ResultsHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('templates/results.html')
+        user = users.get_current_user()
+        if user:
+            nickname = user.nickname()
+            greeting = ('<a href="%s">Sign Out</a>' % (users.create_logout_url('/')))
+        else:
+            greeting = ('<a href="%s">Sign In</a>' % users.create_login_url('/'))
+        signin = ('<html><body><section id="WholeTopPart"><div class="top" id="SignIn">%s</div></section></body></html>' % greeting)
+
         base_url = "http://api.eventful.com/json/events/search?app_key=dTJDKdL9vWFkMrwQ&page_size=30"
         #remember to add code to make more than 10 events &page_size=100
         url = base_url + "&location=" + str(self.request.get("location")) + "&category=" +str(self.request.get("category"))
@@ -383,7 +391,9 @@ class ResultsHandler(webapp2.RequestHandler):
             "eventTitleId" : event_title_id,
             "eventCategory" : event_category,
             "eventStartTimeId": event_start_time_id,
-            "eventStopTimeId": event_stop_time_id
+            "eventStopTimeId": event_stop_time_id,
+            "Signin" : signin
+
             }
         if event_dictionary["eventTitles"] == []:
             event_dictionary["error"] = "Sorry! There are no events for this category in this location"
