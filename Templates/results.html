@@ -1,20 +1,35 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="resources/listpage.css">
-
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
 	<body>
+		<section id="WholeTopPart">
+				<div class="top" id="logo">MTYAY</div>
+				<div id="spacer"></div>
+				<div class="top" id="SignIn"> {{Signin}} </div>
+				<!-- <div class="top" id="SignIn">My Events </div> -->
+		</section>
+
 		<ul id="list">
 			{% if error %}
 				{{error}}
 			{% else %}
 				{% for title in eventTitles %}
-				<div>
+				<div id=contentdiv>
 					<ul>
 						<li>
 							<img src = {{eventTitlePhotoUrl[title]}}></a>
-							<h3><li><a href = "/event_specifics?id={{eventTitleId[title]}}&category={{eventCategory[title]}}">{{title}}</a></li></h3>
-							<p>{{eventTitleVenue[title]}}</p>
+							<h3><a href = "/event_specifics?id={{eventTitleId[title]}}&category={{eventCategory[title]}}">{{title}}</a></h3>
+							<p><i class="fa fa-map-marker" style="font-size:24px"></i>
+								{{eventTitleVenue[title]}}</p>
+							<p><i class="fa fa-clock-o" aria-hidden="true" style="font-size:20px"></i>
+								Start Time: {{eventStartTimeId[title]}}</p>
+								<p><i class="fa fa-clock-o" aria-hidden="true" style="font-size:20px"></i>
+								Stop Time: {{eventStopTimeId[title]}}</p>
 						</li>
 					</ul>
 				</div>
@@ -27,10 +42,6 @@
 			{% endif %}
 			<br>
 		</ul>
-
-
-
-
 
 		<!-- <img id="fadeimg" src="http://pa1.narvii.com/6461/57d12880e007e56dc1e43bd99393ed8a6f3166c0_hq.gif"> -->
 	</body>
