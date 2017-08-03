@@ -38,11 +38,13 @@ class MainHandler(webapp2.RequestHandler):
         if user:
             nickname = user.nickname()
             greeting = ('<a href="%s">Sign Out</a>' % (users.create_logout_url('/')))
+            listSavedEvents = ('<div class="top" id="savedEvents">Saved Events</div>')
         else:
             greeting = ('<a href="%s">Sign In</a>' % users.create_login_url('/'))
-        signin = ('<html><body><section id="WholeTopPart"><div class="top" id="SignIn">%s</div></section></body></html>' % greeting)
+            listSavedEvents = ('')
         login = {
-                "Signin" : signin
+                "Signin" : greeting,
+                "listOfSavedEvents" : listSavedEvents
                 }
         self.response.write(template.render(login))
 
@@ -55,7 +57,6 @@ class EventInfo(webapp2.RequestHandler):
             greeting = ('Hello, ' + nickname + "!" + '<a href="%s">Sign Out</a>' % (users.create_logout_url('/')))
         else:
             greeting = ('<a href="%s">Sign In</a>' % users.create_login_url('/'))
-        signin = ('<html><body><section id="WholeTopPart"><div class="top" id="SignIn">%s</div></section></body></html>' % greeting)
 
 
         base_url = "http://api.eventful.com/json/events/get?app_key=dTJDKdL9vWFkMrwQ&id="
@@ -207,7 +208,7 @@ class EventInfo(webapp2.RequestHandler):
             "mediumPicURL" : event_image_url_medium,
             "startTime" : event_start_time,
             "stopTime" : event_stop_time,
-            "Signin" : signin
+            "Signin" : greeting
 
         }
 
@@ -216,7 +217,7 @@ class EventInfo(webapp2.RequestHandler):
 class ResultsHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('templates/results.html')
-        base_url = "http://api.eventful.com/json/events/search?app_key=dTJDKdL9vWFkMrwQ&page_size=70"
+        base_url = "http://api.eventful.com/json/events/search?app_key=dTJDKdL9vWFkMrwQ&page_size=30"
         #remember to add code to make more than 10 events &page_size=100
         url = base_url + "&location=" + str(self.request.get("location")) + "&category=" +str(self.request.get("category"))
         event_data_source= urllib2.urlopen(url)
@@ -376,6 +377,7 @@ class ResultsHandler(webapp2.RequestHandler):
             "eventStartTimeId": event_start_time_id,
             "eventStopTimeId": event_stop_time_id
             }
+        print event_dictionary["eventCategory"]
         self.response.write(template.render(event_dictionary))
 
 class SavedEvent(webapp2.RequestHandler):
@@ -454,8 +456,9 @@ class SavedEvent(webapp2.RequestHandler):
 
             event_obj = Event(event_id = eventId, event_title = eventTitle, event_image_url = eventImageURL)
             event_key = event_obj.put()
-            print "event_key = " + event_key
-            print "event_obj = " + event_obj
+            print "event_key = " + str(event_key)
+            print "event_obj = " + str(event_obj)
+            print "url = " + eventImageURL
             saved_events_dictionary = {
                 "title" : eventTitle,
                 "URLimage" : eventImageURL,
@@ -468,9 +471,21 @@ class SavedEvent(webapp2.RequestHandler):
             }
             self.response.write(template.render(saved_events_dictionary))
 
+class ListOfSavedEvents(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_environment.get_template('templates/list_saved_events.html')
+        user = users.get_current_user()
+        message = "Here are your saved events:"
+        results = Event.query().fetch()
+        return_dict = {
+            "msg" : message,
+            "res" : result
+        }
+        self.response.write(template.render(return_dict))
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/results', ResultsHandler),#results handler
     ('/event_specifics', EventInfo),
-    ('/saved_event', SavedEvent)
+    ('/saved_event', SavedEvent),
+    ('/list_saved_events', ListOfSavedEvents)
 ], debug=True)

@@ -1,10 +1,10 @@
 <html>
 	<head>
-		<link rel="stylesheet" href="resources/listpage.css">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+		<link rel="stylesheet" href="resources/listpage.css"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet"/>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 	</head>
 	<body>
 		<section id="WholeTopPart">
@@ -13,38 +13,36 @@
 				<div class="top" id="SignIn"> {{Signin}} </div>
 				<!-- <div class="top" id="SignIn">My Events </div> -->
 		</section>
-	<h1>Search Results:</h1>
-	{% if error %}
-		{{error}}
-		<form method="get" action="/">
-			<button type="submit">Back</button>
-		</form>
-	{% else %}
-		<ul id="list">
+		<h1>Search Results:</h1>
+		{% if error %}
+			{{error}}
+			<form method="get" action="/">
+				<button type="submit">Back</button>
+			</form>
+		{% else %}
+			<ul id="list">
 				{% for title in eventTitles %}
-				<a href = "/event_specifics?id={{eventTitleId[title]}}&category={{eventCategory[title]}}">
-					<div id=contentdiv>
-						<li>
-							<img src = {{eventTitlePhotoUrl[title]}}>
-							<h3>{{title}}</h3>
-							<!-- <h3><a href = "/event_specifics?id={{eventTitleId[title]}}&category={{eventCategory[title]}}">{{title}}</a></h3> -->
-							<p><i class="fa fa-map-marker" style="font-size:24px"></i>
+					<a href = "/event_specifics?id={{eventTitleId[title]}}&category={{eventCategory[title]}}">
+						<div id=contentdiv>
+							<li>
+								<img src = {{eventTitlePhotoUrl[title]}}>
+								<h3>{{title}}</h3>
+								<p><i class="fa fa-map-marker" style="font-size:24px"></i>
 								{{eventTitleVenue[title]}}</p>
-							<p><i class="fa fa-clock-o" aria-hidden="true" style="font-size:20px"></i>
+								<p><i class="fa fa-clock-o" aria-hidden="true" style="font-size:20px"></i>
 								Start Time: {{eventStartTimeId[title]}}</p>
 								<p><i class="fa fa-clock-o" aria-hidden="true" style="font-size:20px"></i>
 								Stop Time: {{eventStopTimeId[title]}}</p>
-							<form action = "/saved_event">
-								<input type = "hidden" name = "event_id" value = {{eventTitleId[title]}}>
-								<!-- fix the url thingy not passing ?id=... -->
-								<button id=savebutton>Save Event</button>
-							</form>
-						</li>
-				</div>
-			</a>
+								<form action = "/saved_event">
+									<input type = "hidden" name = "event_id" value = {{eventTitleId[title]}}>
+									<!-- fix the url thingy not passing ?id=... -->
+									<button id=savebutton>Save Event</button>
+								</form>
+							</li>
+						</div>
+					</a>
 				{% endfor %}
-			{% endif %}
-			<br>
+		{% endif %}
 		</ul>
 	</body>
 </html>
