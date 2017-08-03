@@ -377,7 +377,7 @@ class EventInfo(webapp2.RequestHandler):
 
 class SavedEvents(webapp2.RequestHandler):
     def get(self):
-        template = jinja_environment.get_template('templates/saved_events.html')
+        template = jinja_environment.get_template('templates/saved_event.html')
         user = users.get_current_user()
         if user:
             base_url = "http://api.eventful.com/json/events/get?app_key=dTJDKdL9vWFkMrwQ&id="
@@ -452,9 +452,12 @@ class SavedEvents(webapp2.RequestHandler):
 
             event_obj = Event(event_id = eventId, event_title = eventTitle, event_image_url = eventImageURL)
             event_key = event_obj.put()
+            print "event_key = " + event_key
+            print "event_obj = " + event_obj
             saved_events_dictionary = {
-                "key" : event_key,
-                "obj" : event_obj
+                "title" : eventTitle,
+                "URLimage" : eventImageURL,
+                "id" : eventId
             }
             self.response.write(template.render(saved_events_dictionary))
         else:
@@ -467,5 +470,5 @@ app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/results', ResultsHandler),#results handler
     ('/event_specifics', EventInfo),
-    ('/saved_events', SavedEvents)
+    ('/saved_event', SavedEvent)
 ], debug=True)
