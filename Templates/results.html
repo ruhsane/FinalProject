@@ -21,13 +21,6 @@
 			</form>
 		{% else %}
 			<ul id="list">
-	{% if error %}
-		{{error}}
-		<form method="get" action="/">
-			<button id=backbutton type="submit">Back</button>
-		</form>
-	{% else %}
-		<ul id="list">
 				{% for title in eventTitles %}
 					<a href = "/event_specifics?id={{eventTitleId[title]}}&category={{eventCategory[title]}}">
 						<div id=contentdiv>
@@ -53,7 +46,6 @@
 						</div>
 					</a>
 				{% endfor %}
-		{% endif %}
 				<form method="get" action="/">
 					<button id=backbutton type="submit">Back</button>
 				</form>
