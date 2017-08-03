@@ -22,7 +22,7 @@
 				<form method="get" action="/">
 	    <button type="submit">Back</button>
 	</form>
-			{% else %}
+		{% else %}
 				{% for title in eventTitles %}
 				<a href = "/event_specifics?id={{eventTitleId[title]}}&category={{eventCategory[title]}}">
 					<div id=contentdiv>
