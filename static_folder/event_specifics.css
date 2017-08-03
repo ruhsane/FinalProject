@@ -1,6 +1,6 @@
 
 a:-webkit-any-link {
-    color: black;
+    color:#FD64FD;
     font-family: Comic Sans MS, Comic Sans, cursive;
     font-size: 20px;
     /*cursor: auto;*/
@@ -13,8 +13,8 @@ body {
 }
 
 .top{
-  height: 40px;
-  width: 200px;
+  height: 55px;
+  width: 198px;
   text-align: center;
   align-items: center;
   /*border: 1px solid grey;*/
@@ -38,15 +38,10 @@ body {
 }
 
 #SignIn {
-  /*font-family: Comic Sans MS, Comic Sans, cursive;*/
-  font-family: Chalkduster, fantasy;
-  font-size: 20px;
+  /*font-family: Chalkduster, fantasy;*/
+  font: 20px Chalkduster, fantasy white;
 }
 
 body {
   font-family: "Lato", sans-serif;
-}
-
-.mySlides {
-  /*display: none;*/
 }
