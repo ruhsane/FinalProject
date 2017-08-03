@@ -51,7 +51,7 @@ body {
 
 
 #SearchSection {
-  /*position: relative;*/
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,7 +60,7 @@ body {
 }
 
 .w3-content {
-    max-width: 100%; 
+    max-width: 100%;
     margin: auto;
   }
 
