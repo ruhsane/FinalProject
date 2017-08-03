@@ -383,13 +383,9 @@ class EventInfo(webapp2.RequestHandler):
 
 class ResultsHandler(webapp2.RequestHandler):
     def get(self):
-
         template = jinja_environment.get_template('templates/results.html')
         base_url = "http://api.eventful.com/json/events/search?app_key=dTJDKdL9vWFkMrwQ&page_size=70"
         #remember to add code to make more than 10 events &page_size=100
-        print "--------------"
-        print self.request.get("category")
-        print "--------------"
         url = base_url + "&location=" + str(self.request.get("location")) + "&category=" +str(self.request.get("category"))
         event_data_source= urllib2.urlopen(url)
         event_json_content = event_data_source.read()
@@ -450,7 +446,6 @@ class ResultsHandler(webapp2.RequestHandler):
 
                 event_start_time = finalDate + finalTime
                 event_start_time_id[listOfEvents[i]["title"]] = event_start_time
-
 
             if event_stop_time is not "No stop time found":
                 stop_time_list = event_stop_time.split(" ")

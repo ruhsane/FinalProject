@@ -13,7 +13,9 @@
 				<div class="top" id="SignIn"> {{Signin}} </div>
 				<!-- <div class="top" id="SignIn">My Events </div> -->
 		</section>
-
+	{% if error %}
+		{{error}}
+	{% else %}
 		<ul id="list">
 			{% if error %}
 				{{error}}
@@ -39,14 +41,11 @@
 			</a>
 				<form action = "/saved_events">
 					<input type = "hidden" name = "event_id" value = {{eventTitleId[title]}}>
-					<!-- fix the url thingy not passing ?id=... -->
 					<button>Save Event</button>
 				</form>
 				{% endfor %}
 			{% endif %}
 			<br>
 		</ul>
-
-		<!-- <img id="fadeimg" src="http://pa1.narvii.com/6461/57d12880e007e56dc1e43bd99393ed8a6f3166c0_hq.gif"> -->
 	</body>
 </html>
