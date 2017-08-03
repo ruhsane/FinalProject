@@ -443,6 +443,7 @@ class SavedEvents(webapp2.RequestHandler):
                     eventImageURL = "/resources/sales_image.jpg"
                 elif eventCategory == 'religion_spirituality':
                     eventImageURL = "/resources/religion_image.jpg"
+                    
             else:
                 if type(parsed_specific_event_dictionary["images"]) is list:
                     eventImageURL = parsed_specific_event_dictionary["images"][0]["medium"]["url"]
