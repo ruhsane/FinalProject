@@ -51,7 +51,7 @@ body {
 
 
 #SearchSection {
-  /*position: relative;*/
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
