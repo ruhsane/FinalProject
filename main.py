@@ -375,7 +375,7 @@ class EventInfo(webapp2.RequestHandler):
 
 
 
-class SavedEvents(webapp2.RequestHandler):
+class SavedEvent(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('templates/saved_event.html')
         user = users.get_current_user()
