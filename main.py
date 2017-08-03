@@ -227,14 +227,11 @@ class ResultsHandler(webapp2.RequestHandler):
         event_data_source= urllib2.urlopen(url)
         event_json_content = event_data_source.read()
         parsed_event_dictionary = json.loads(event_json_content)
+        event_dictionary = {}
         if parsed_event_dictionary['events'] is not None:
             listOfEvents = parsed_event_dictionary["events"]["event"]
         else:
             listOfEvents = []
-            event_dictionary = {
-            "error" : "Sorry! No results found."
-            }
-            self.response.write(template.render(event_dictionary))
         i = 0
         event_title_list = []
         event_id_list = []
@@ -384,7 +381,8 @@ class ResultsHandler(webapp2.RequestHandler):
             "eventStartTimeId": event_start_time_id,
             "eventStopTimeId": event_stop_time_id
             }
-        print event_dictionary["eventCategory"]
+        if event_dictionary["eventTitles"] == []:
+            event_dictionary["error"] = "Sorry! There are no events for this category in this location"
         self.response.write(template.render(event_dictionary))
 
 class EventInfo(webapp2.RequestHandler):
