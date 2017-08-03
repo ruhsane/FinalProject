@@ -39,21 +39,12 @@ class MainHandler(webapp2.RequestHandler):
                 "Signin" : signin
                 }
 
+
+
         self.response.write(template.render(login))
 
     def post(self):
         template = jinja_environment.get_template('templates/results.html')
-        user = users.get_current_user()
-        if user:
-            nickname = user.nickname()
-            greeting = ('Hello, ' + nickname + "!" + '<a href="%s">Sign Out</a>' % (users.create_logout_url('/')))
-        else:
-            greeting = ('<a href="%s">Sign In</a>' % users.create_login_url('/'))
-        signin = ('<html><body><section id="WholeTopPart"><div class="top" id="SignIn">%s</div></section></body></html>' % greeting)
-
-
-        #self.response.write(template.render(login))
-
         base_url = "http://api.eventful.com/json/events/search?app_key=dTJDKdL9vWFkMrwQ&page_size=70"
         #remember to add code to make more than 10 events &page_size=100
         print "--------------"
@@ -152,8 +143,7 @@ class MainHandler(webapp2.RequestHandler):
             "eventTitles": event_title_list,
             "eventIds": event_id_list,
             "eventTitleId" : event_title_id,
-            "eventCategory" : event_category,
-            "Signin" : signin
+            "eventCategory" : event_category
             }
         self.response.write(template.render(event_dictionary))
 
@@ -265,13 +255,17 @@ class EventInfo(webapp2.RequestHandler):
 
             AMorPM = ""
             minute = start_time_time[1]
-            if start_time_time[0] >= 12:
+            print "==================="
+            print start_time_time[0]
+            if int(start_time_time[0]) >= 12:
                 AMorPM = "PM"
             else:
                 AMorPM = "AM"
             hour = int(start_time_time[0]) % 12
             if hour == 0:
                 hour = 12
+            print "======================="
+            print AMorPM
             finalTime = str(hour) + ":" + str(minute) + " " + AMorPM
 
             event_start_time = finalDate + finalTime
@@ -288,7 +282,7 @@ class EventInfo(webapp2.RequestHandler):
 
             AMorPM = ""
             minute = stop_time_time[1]
-            if stop_time_time[0] >= 12:
+            if int(stop_time_time[0]) >= 12:
                 AMorPM = "PM"
             else:
                 AMorPM = "AM"
