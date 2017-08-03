@@ -47,7 +47,8 @@ a:-webkit-any-link:hover{
 
 #contentdiv {
   margin: 20px;
-  width: 800px;
+  /*width: 800px;*/
+  width: 100%;
   height: 200px;
   background: #eee;
   cursor: default;
@@ -55,7 +56,9 @@ a:-webkit-any-link:hover{
 
 ul {
   list-style-type: none;
-  width: 700px;
+  /*width: 700px;*/
+  width: 90%;
+
   height: 150px;
 }
 
