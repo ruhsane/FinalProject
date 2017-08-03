@@ -1,10 +1,22 @@
 
+a:-webkit-any-link {
+    color:#FD64FD;
+    font-family: Comic Sans MS, Comic Sans, cursive;
+    font-size: 20px;
+    /*cursor: auto;*/
+    text-decoration: none;
+    padding-top: 0px;
+}
+
+body {
+  margin: 0px;
+}
+
 .top{
-  height: 40px;
-  width: 200px;
+  height: 55px;
+  width: 198px;
   text-align: center;
   align-items: center;
-  padding: 10 10 10 10;
   /*border: 1px solid grey;*/
 }
 
@@ -26,16 +38,8 @@
 }
 
 #SignIn {
-  /*font-family: Comic Sans MS, Comic Sans, cursive;*/
-  font-family: Chalkduster, fantasy;
-  font-size: 20px;
-}
-
-
-a:-webkit-any-link {
-    color: black;
-    cursor: pointer;
-    text-decoration: none;
+  /*font-family: Chalkduster, fantasy;*/
+  font: 20px Chalkduster, fantasy white;
 }
 
 
