@@ -17,7 +17,7 @@
 	{% if error %}
 		{{error}}
 		<form method="get" action="/">
-			<button type="submit">Back</button>
+			<button id=backbutton type="submit">Back</button>
 		</form>
 	{% else %}
 		<ul id="list">
@@ -45,6 +45,9 @@
 				</div>
 			</a>
 				{% endfor %}
+				<form method="get" action="/">
+					<button id=backbutton type="submit">Back</button>
+				</form>
 			{% endif %}
 			<br>
 		</ul>

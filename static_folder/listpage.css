@@ -99,6 +99,14 @@ li:hover {
   font: 15px Helvetica, Verdana, sans-serif;
   cursor: pointer;
 }
+
+#backbutton {
+  padding: 5 10;
+  border: 0.5px;
+  background: pink;
+  font: 30px Helvetica, Verdana, sans-serif;
+  cursor: pointer;
+}
 /*
 #fadeimg {
     /*-webkit-animation: fadeout 2s; /* Safari, Chrome and Opera > 12.1*/

@@ -385,7 +385,7 @@ class EventInfo(webapp2.RequestHandler):
         user = users.get_current_user()
         if user:
             nickname = user.nickname()
-            greeting = ('Hello, ' + nickname + "!" + '<a href="%s">Sign Out</a>' % (users.create_logout_url('/')))
+            greeting = ('<a href="%s">Sign Out</a>' % (users.create_logout_url('/')))
         else:
             greeting = ('<a href="%s">Sign In</a>' % users.create_login_url('/'))
         signin = ('<html><body><section id="WholeTopPart"><div class="top" id="SignIn">%s</div></section></body></html>' % greeting)
