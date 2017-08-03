@@ -46,8 +46,6 @@ class MainHandler(webapp2.RequestHandler):
                 }
         self.response.write(template.render(login))
 
-<<<<<<< HEAD
-=======
 class EventInfo(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('templates/event_specifics.html')
@@ -215,7 +213,6 @@ class EventInfo(webapp2.RequestHandler):
 
         self.response.write(template.render(event_dict))
 
->>>>>>> 48db0a256517c9cff32c2a9bc1295cd2952fa08a
 class ResultsHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('templates/results.html')
