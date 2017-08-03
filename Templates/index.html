@@ -30,7 +30,7 @@
 
       <section id="SearchBox">
         <h1 id="mainheader"> Explore Events! </h1>
-      <form method="post">
+      <form action = "/results">
         <select name="location">
           <option selected disabled>Pick a place</option>
           <option value="montgomery">Montgomery, Alabama</option>
@@ -131,10 +131,15 @@
           <option value="none">Everything</option>
         </select>
         <br><br>
-        <button type="submit">
+        <button>
           <i class="fa fa-search"></i>
           Search
         </button>
+        <!-- </button> -->
+        <!-- <form action = "/results">
+          <input type="submit" value = "Search" <i class="fa fa-search"></i>
+            <i class="fa fa-search"></i>
+        </form> -->
       </form>
       </section>
     </div>
