@@ -67,7 +67,7 @@ li img {
   float: left;
   margin: 0 15px 0 0;
   height: 120px;
-  width: 200px;
+  width: 170px;
 }
 
 li p {
@@ -89,6 +89,9 @@ li:hover {
 }
 
 
+#savebutton {
+
+}
 /*
 #fadeimg {
     /*-webkit-animation: fadeout 2s; /* Safari, Chrome and Opera > 12.1*/
