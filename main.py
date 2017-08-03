@@ -193,9 +193,9 @@ class MainHandler(webapp2.RequestHandler):
                     event_image_url_medium[listOfEvents[i]["title"]] = "/resources/religion_image.jpg"
             else:
                 if type(listOfEvents[i]["image"]) is list:
-                    event_image_url_medium[listOfEvents[i]["title"]] = listOfEvents[i]["image"][0]["medium"]["url"]
+                    event_image_url_medium[listOfEvents[i]["title"]] = (listOfEvents[i]["image"][0]["medium"]["url"]).replace("medium","large")
                 else:
-                    event_image_url_medium[listOfEvents[i]["title"]] = listOfEvents[i]["image"]["medium"]["url"]
+                    event_image_url_medium[listOfEvents[i]["title"]] = (listOfEvents[i]["image"]["medium"]["url"]).replace("medium","large")
             event_title_venue[listOfEvents[i]["title"]] = listOfEvents[i]["venue_name"]
             event_category[listOfEvents[i]["title"]] = str(self.request.get("category"))
             i += 1
@@ -303,9 +303,9 @@ class EventInfo(webapp2.RequestHandler):
                 event_image_url_medium = "/resources/religion_image.jpg"
         else:
             if type(parsed_specific_event_dictionary["images"]["image"]) is list:
-                event_image_url_medium = parsed_specific_event_dictionary["images"]["image"][0]["medium"]["url"]
+                event_image_url_medium = (parsed_specific_event_dictionary["images"]["image"][0]["medium"]["url"]).replace("medium", "large")
             else:
-                event_image_url_medium = parsed_specific_event_dictionary["images"]["image"]["medium"]["url"]
+                event_image_url_medium = (parsed_specific_event_dictionary["images"]["image"]["medium"]["url"]).replace("medium", "large")
 
 
         if event_start_time is not "No start time found":
