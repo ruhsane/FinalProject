@@ -162,6 +162,15 @@ class MainHandler(webapp2.RequestHandler):
 class EventInfo(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('templates/event_specifics.html')
+        user = users.get_current_user()
+        if user:
+            nickname = user.nickname()
+            greeting = ('Hello, ' + nickname + "!" + '<a href="%s">Sign Out</a>' % (users.create_logout_url('/')))
+        else:
+            greeting = ('<a href="%s">Sign In</a>' % users.create_login_url('/'))
+        signin = ('<html><body><section id="WholeTopPart"><div class="top" id="SignIn">%s</div></section></body></html>' % greeting)
+
+
         base_url = "http://api.eventful.com/json/events/get?app_key=dTJDKdL9vWFkMrwQ&id="
         url = base_url + self.request.get("id") + '&category=' + self.request.get("category")
         specific_event_data_source= urllib2.urlopen(url)
@@ -306,7 +315,9 @@ class EventInfo(webapp2.RequestHandler):
             "venueAddress" : event_venue_address,
             "mediumPicURL" : event_image_url_medium,
             "startTime" : event_start_time,
-            "stopTime" : event_stop_time
+            "stopTime" : event_stop_time,
+            "Signin" : signin
+
         }
 
         self.response.write(template.render(event_dict))
