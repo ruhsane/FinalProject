@@ -148,6 +148,8 @@ class EventInfo(webapp2.RequestHandler):
                 event_image_url_medium = "/resources/none_image.jpg"
             elif self.request.get('category') == 'other':
                 event_image_url_medium = "/resources/other_image.png"
+            elif self.request.get('category') == '':
+                event_image_url_medium = "/resources/other_image.png"
         else:
             if type(parsed_specific_event_dictionary["images"]["image"]) is list:
                 event_image_url_medium = (parsed_specific_event_dictionary["images"]["image"][0]["medium"]["url"]).replace("medium", "large")
@@ -363,6 +365,8 @@ class ResultsHandler(webapp2.RequestHandler):
                     event_image_url_medium[listOfEvents[i]["title"]] = "/resources/none_image.jpg"
                 elif self.request.get('category') == 'other':
                     event_image_url_medium[listOfEvents[i]["title"]] = "/resources/other_image.png"
+                elif self.request.get('category') == '':
+                    event_image_url_medium[listOfEvents[i]["title"]] = "/resources/other_image.png"
             else:
                 if type(listOfEvents[i]["image"]) is list:
                     event_image_url_medium[listOfEvents[i]["title"]] = (listOfEvents[i]["image"][0]["medium"]["url"]).replace("medium","large")
@@ -482,6 +486,8 @@ class EventInfo(webapp2.RequestHandler):
             elif self.request.get('category') == 'none':
                 event_image_url_medium = "/resources/none_image.jpg"
             elif self.request.get('category') == 'other':
+                event_image_url_medium = "/resources/other_image.png"
+            elif self.request.get('category') == '':
                 event_image_url_medium = "/resources/other_image.png"
         else:
             if type(parsed_specific_event_dictionary["images"]["image"]) is list:
@@ -621,6 +627,8 @@ class SavedEvent(webapp2.RequestHandler):
                 elif eventCategory == 'none':
                     eventImageURL = "/resources/none_image.jpg"
                 elif eventCategory== 'other':
+                    eventImageURL = "/resources/other_image.png"
+                elif eventCategory== '':
                     eventImageURL = "/resources/other_image.png"
             else:
                 if type(parsed_specific_event_dictionary["images"]) is list:
