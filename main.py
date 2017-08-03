@@ -383,8 +383,6 @@ class ResultsHandler(webapp2.RequestHandler):
         print event_dictionary["eventCategory"]
         self.response.write(template.render(event_dictionary))
 
-
-
 class EventInfo(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('templates/event_specifics.html')
@@ -548,8 +546,6 @@ class EventInfo(webapp2.RequestHandler):
 
         self.response.write(template.render(event_dict))
 
-
-
 class SavedEvent(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('templates/saved_event.html')
@@ -654,6 +650,7 @@ class ListOfSavedEvents(webapp2.RequestHandler):
             "res" : result
         }
         self.response.write(template.render(return_dict))
+        
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/results', ResultsHandler),#results handler
