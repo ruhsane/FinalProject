@@ -230,7 +230,7 @@ class ResultsHandler(webapp2.RequestHandler):
                 greeting = ('<a href="%s">Sign In</a>' % users.create_login_url('/'))
             signin = ('<html><body><section id="WholeTopPart"><div class="top" id="SignIn">%s</div></section></body></html>' % greeting)
 
-            base_url = "http://api.eventful.com/json/events/search?app_key=dTJDKdL9vWFkMrwQ&page_size=30"
+            base_url = "http://api.eventful.com/json/events/search?app_key=dTJDKdL9vWFkMrwQ"
             #remember to add code to make more than 10 events &page_size=100
             url = base_url + "&location=" + str(self.request.get("location")) + "&category=" +str(self.request.get("category"))
             event_data_source= urllib2.urlopen(url)
