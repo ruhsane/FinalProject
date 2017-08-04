@@ -662,11 +662,10 @@ class ListOfSavedEvents(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('templates/list_saved_events.html')
         user = users.get_current_user()
-        message = "Here are your saved events:"
-        results = Event.query().fetch()
+        savedEventList = Event.query().fetch()
         return_dict = {
-            "msg" : message,
-            "res" : result
+            "message" : "Here are your saved events:",
+            "results" : savedEventList
         }
         self.response.write(template.render(return_dict))
 

@@ -1,0 +1,13 @@
+<html>
+  <head>
+    <title>Your Saved Events</title>
+  </head>
+  <body>
+    <h1>{{message}}</h1>
+    {% for event in results %}
+      <h3><a href = "/event_specifics?id={{event.event_id}}">{{event.event_title}}</a></h3>
+      <img src = {{event.event_image_url}}>
+      <h6>Event id: {{event.event_id}}</h6>
+    {% endfor %}
+  </body>
+</html>
