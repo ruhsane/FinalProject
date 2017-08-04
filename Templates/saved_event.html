@@ -1,11 +1,21 @@
 <html>
-  <head>
-    <title>Saved Event!</title>
-  </head>
-  <body>
-      <h1>Saved Event!</title>
-			  <h2>{{title}}</h2>
-        <img src = {{URLimage}}>
-        <p>ID number: {{id}}</p>
-  </body>
+  {% if error %}
+    <head>
+      <title>Error</title>
+    </head>
+    <body>
+      <h1>Error:</h1>
+        {{error}}
+    </body>
+  {% else %}
+    <head>
+      <title>Saved Event!</title>
+    </head>
+    <body>
+        <h1>Saved Event!</title>
+  			  <h2>{{title}}</h2>
+          <img src = {{URLimage}}>
+          <p>ID number: {{id}}</p>
+    </body>
+  {% endif %}
 </html>
