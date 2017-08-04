@@ -40,9 +40,12 @@ body {
   /*font-family: Chalkduster, fantasy;*/
   font: 20px Chalkduster, fantasy ;
   color: #FD64FD;
-
 }
 
+#savedEvents {
+  color: #FD64FD;
+
+}
 
 a:-webkit-any-link:hover{
   color: #FD64FD;
