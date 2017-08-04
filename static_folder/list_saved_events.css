@@ -64,7 +64,6 @@ a:-webkit-any-link:hover{
 
 #contentdiv {
   margin: 20px;
-  /*width: 800px;*/
   width: 100%;
   height: 200px;
   background: #eee;
@@ -93,7 +92,7 @@ li img {
 }
 
 li p {
-  float: center;
+  /*float: center;*/
   font: 200 15px Georgia, Times New Roman, serif;
   overflow: auto;
 
@@ -110,61 +109,6 @@ li:hover {
   background: white;
   cursor: pointer;
 }
-
-
-#savebutton {
-  padding: 5 10;
-  border: 0.5px;
-  background: pink;
-  font: 15px Helvetica, Verdana, sans-serif;
-  cursor: pointer;
-}
-
-#backbutton {
-  padding: 5 10;
-  border: 0.5px;
-  background: pink;
-  font: 30px Helvetica, Verdana, sans-serif;
-  cursor: pointer;
-}
-/*
-#fadeimg {
-    /*-webkit-animation: fadeout 2s; /* Safari, Chrome and Opera > 12.1*/
-       /*-moz-animation: fadeout 2s; Firefox < 16*/
-        /*-ms-animation: fadeout 2s; Internet Explorer */
-         /*-o-animation: fadeout 2s; Opera < 12.1 */
-            /*animation: fadeout 2s;
-}*/
-
-/*@keyframes fadeout {
-    from { opacity: 1; visibility: visible; }
-    to   { opacity: 0; visibility: hidden; }
-}*/
-
-/* Firefox < 16 */
-/*@-moz-keyframes fadeout {
-    from { opacity: 1; visibility: visible; }
-    to   { opacity: 0; visibility: hidden; }
-}*/
-
-/* Safari, Chrome and Opera > 12.1 */
-/*@-webkit-keyframes fadeout {
-    from { opacity: 1; visibility: visible; }
-    to   { opacity: 0; visibility: hidden; }
-}*/
-
-/* Internet Explorer */
-/*@-ms-keyframes fadeout {
-    from { opacity: 1; visibility: visible; }
-    to   { opacity: 0; visibility: hidden; }
-}*/
-
-/* Opera < 12.1 */
-/*@-o-keyframes fadeout {
-    from { opacity: 1; visibility: visible; }
-    to   { opacity: 0; visibility: hidden; }
-}
-*/
 
 #list {
     -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */

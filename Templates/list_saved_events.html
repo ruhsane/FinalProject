@@ -20,15 +20,22 @@
         <br>
         <br>
     <div id=savebody>
-    <h1>{{message}}</h1>
-    {% for event in results %}
-      <h3><a href = "/event_specifics?id={{event.event_id}}&category={{event.event_category}}">{{event.event_title}}</a></h3>
-      <img src = {{event.event_image_url}}>
-      <h6>Event id: {{event.event_id}}</h6>
-    {% endfor %}
-    <form method="get" action="/">
-      <button id=backbutton type="submit">Back to Homepage</button>
-    </form>
-  </div>
+      <h1>{{message}}</h1>
+      <div>
+        <ul id="list">
+          {% for event in results %}
+            <a href = "/event_specifics?id={{event.event_id}}&category={{event.event_category}}">
+              <div id=contentdiv>
+                <li>
+                  <img src = {{event.event_image_url}}>
+                  <h3>{{event.event_title}}</h3>
+                  <p>Event id: {{event.event_id}}</p>
+                </li>
+              </div>
+            </a>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
   </body>
 </html>
