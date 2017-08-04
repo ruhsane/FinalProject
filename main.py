@@ -663,12 +663,15 @@ class ListOfSavedEvents(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('templates/list_saved_events.html')
         user = users.get_current_user()
-        savedEventList = Event.query().order().fetch()
-        return_dict = {
-            "message" : "Here are your saved events:",
-            "results" : savedEventList
-        }
-        self.response.write(template.render(return_dict))
+        if user:
+            savedEventList = Event.query().order().fetch()
+            return_dict = {
+                "message" : "Here are your saved events:",
+                "results" : savedEventList
+            }
+            self.response.write(template.render(return_dict))
+        else:
+            self.response.write('<h1>Sign in to save events</h1><form method="get" action="/"><button id=backbutton type="submit">Back to Homepage</button></form>')
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
