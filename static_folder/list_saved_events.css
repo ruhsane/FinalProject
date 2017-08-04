@@ -6,9 +6,14 @@ a:-webkit-any-link {
     text-decoration: none;
     padding-top: 0px;
 }
- 
+
 body {
   margin: 0px;
+}
+
+#savebody {
+  align-items: center;
+  text-align: center;
 }
 
 .top{
@@ -17,6 +22,10 @@ body {
   text-align: center;
   align-items: center;
   /*border: 1px solid grey;*/
+}
+
+#spacer {
+  flex-grow: 1;
 }
 
 #spacer {

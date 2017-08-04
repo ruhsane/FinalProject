@@ -1,4 +1,24 @@
 <html>
+	<head>
+		<link rel="stylesheet" href="resources/saved_event.css"/>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	</head>
+	<body>
+
+		<div class="w3-top w3-bar w3-black w3-card-2" id="WholeTopPart">
+        <div class="top w3-bar-item w3-button w3-padding-large" id="logo"><a href='/'>MTYAY</a></div>
+				<div id="spacer"></div>
+				<div class="top w3-bar-item w3-button w3-padding-large" id="SignIn"> {{Signin}} </div>
+				<a href = "/list_saved_events"><div class="top w3-bar-item w3-button w3-padding-large" id="savedEvents">My Events</div></a>
+    </div>
+</body>
+
   {% if error %}
     <head>
       <title>Error</title>
@@ -11,7 +31,7 @@
     <head>
       <title>Saved Event!</title>
     </head>
-    <body>
+    <body id="savebody">
         <h1>Saved Event!</title>
   			  <h2>{{title}}</h2>
           <img src = {{URLimage}}>

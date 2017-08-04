@@ -1,0 +1,57 @@
+
+a:-webkit-any-link {
+    font-family: Comic Sans MS, Comic Sans, cursive;
+    font-size: 20px;
+    /*cursor: auto;*/
+    text-decoration: none;
+    padding-top: 0px;
+}
+
+body {
+  margin: 0px;
+}
+
+#savebody {
+  align-items: center;
+  text-align: center;
+}
+
+.top{
+  height: 55px;
+  width: 198px;
+  text-align: center;
+  align-items: center;
+  /*border: 1px solid grey;*/
+}
+
+#spacer {
+  flex-grow: 1;
+}
+
+#WholeTopPart {
+  /*border: 1px solid grey;*/
+  display: flex; /*Always need for flex positioning*/
+  justify-content: center;
+  /*margin-top: 3px;*/
+}
+
+#logo {
+  font-family: Chalkduster, fantasy;
+  color: #FD64FD;
+  font-size: 30px;
+}
+
+#SignIn {
+  /*font-family: Chalkduster, fantasy;*/
+  font: 20px Chalkduster, fantasy ;
+  color: #FD64FD;
+}
+
+#savedEvents {
+  color: #FD64FD;
+
+}
+
+a:-webkit-any-link:hover{
+  color: #FD64FD;
+}
